@@ -29,6 +29,7 @@ module.exports = {
 
     devServer: {
         contentBase: path.resolve(__dirname, 'build'),
+        hot: false,
     },
 
     plugins: [
@@ -43,4 +44,5 @@ module.exports = {
             }
         ])
     ],
+    devtool: 'cheap-module-source-map',
 }
