@@ -15,6 +15,7 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "dependencies": {
+    "babel-core": "^6.26.3",
     "copy-webpack-plugin": "^5.0.4",
     "cordova-browser": "^6.0.0",
     "cordova-ios": "^5.0.1",
