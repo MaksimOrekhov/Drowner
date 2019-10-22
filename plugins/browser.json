@@ -7,8 +7,11 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "ca.udia.phaserCordovaES6"
+    },
     "cordova-plugin-browsersync": {
-      "PACKAGE_NAME": "io.cordova.hellocordova"
+      "PACKAGE_NAME": "ca.udia.phaserCordovaES6"
     }
   },
   "dependent_plugins": {}

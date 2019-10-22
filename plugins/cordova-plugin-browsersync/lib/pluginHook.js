@@ -1,5 +1,4 @@
 var path = require('path');
-var glob = require('glob');
 
 var Patcher = require('./utils/Patcher');
 var browserSyncServer = require('./utils/browserSyncServer');
@@ -32,6 +31,7 @@ module.exports = function(context) {
 
     var platforms = ['android', 'ios', 'browser'];
     var patcher = new Patcher(context.opts.projectRoot, platforms);
+    patcher.prepatch();
     var changesBuffer = [];
     var changesTimeout;
     var bs = browserSyncServer(function(defaults) {

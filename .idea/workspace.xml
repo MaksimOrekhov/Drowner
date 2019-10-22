@@ -2,6 +2,147 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32307470-6d3b-42cf-aef4-6a5f5b081201" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/android/icon-36-ldpi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/android/icon-48-mdpi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/android/icon-72-hdpi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/android/icon-96-xhdpi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/bada-wac/icon-48-type5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/bada-wac/icon-50-type3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/bada-wac/icon-80-type4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/bada/icon-128.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/blackberry/icon-80.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/blackberry10/icon-80.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/ios/icon-57-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/ios/icon-57.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/ios/icon-72-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/ios/icon-72.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/tizen/icon-128.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/webos/icon-64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/windows-phone/icon-173-tile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/windows-phone/icon-48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/icon/windows-phone/icon-62-tile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/android/screen-hdpi-landscape.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/android/screen-hdpi-portrait.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/android/screen-ldpi-landscape.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/android/screen-ldpi-portrait.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/android/screen-mdpi-landscape.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/android/screen-mdpi-portrait.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/android/screen-xhdpi-landscape.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/android/screen-xhdpi-portrait.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/bada-wac/screen-type3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/bada-wac/screen-type4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/bada-wac/screen-type5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/bada/screen-portrait.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/blackberry/screen-225.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/blackberry10/splash-1280x768.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/blackberry10/splash-720x720.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/blackberry10/splash-768x1280.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/ios/screen-ipad-landscape-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/ios/screen-ipad-landscape.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/ios/screen-ipad-portrait-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/ios/screen-ipad-portrait.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/ios/screen-iphone-landscape-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/ios/screen-iphone-landscape.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/ios/screen-iphone-portrait-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/ios/screen-iphone-portrait-568h-2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/ios/screen-iphone-portrait.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/tizen/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/webos/screen-64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/screen/windows-phone/screen-portrait.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/loader-bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sprites/Logo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/states/Boot.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/states/Game.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/states/Preload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpack.production.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/www/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/assets/bomb.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/assets/dude.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/assets/platform.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/loader-bar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/assets/sky.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/assets/star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/browser.json" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/browser.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/.npmignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/lib/pluginHook.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/lib/pluginHook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/lib/utils/Patcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/lib/utils/Patcher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/lib/utils/browser-sync-start.html" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/lib/utils/browser-sync-start.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/lib/utils/browserSyncServer.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/lib/utils/browserSyncServer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/.eslintignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/.eslintrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/CODE_OF_CONDUCT.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/CONTRIBUTING.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/commitlint.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/jest.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/media/cordova-plugin-webpack-demo.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/plugin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/renovate.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/scripts/utils/CordovaConfigParser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/scripts/utils/CordovaConfigParser.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/scripts/utils/webpackHelpers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/scripts/utils/webpackHelpers.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/scripts/webpackCompile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/scripts/webpackCompile.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/scripts/webpackServe.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/scripts/webpackServe.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/scripts/www/injectCSP.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/scripts/www/injectCordovaScript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-webpack/webpack.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/RELEASENOTES.md" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/RELEASENOTES.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/tests/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/tests/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/tests/plugin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/tests/scripts/remove-access.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/tests/src/android/WhitelistAPI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/tests/tests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/tests/www/whitelist.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/fetch.json" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fetch.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/ios.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/assets/bomb.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/assets/dude.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/assets/platform.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/assets/sky.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/assets/star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/css/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/img/bomb.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/img/dude.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/img/platform.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/img/sky.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/img/star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,34 +158,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/js/index.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webpack.production.config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="188">
+              <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package-lock.json">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webpack.config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+            <state relative-caret-position="195">
+              <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
+        <entry file="file://$PROJECT_DIR$/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+            <state relative-caret-position="69">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/states/Boot.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/states/Game.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23">
+              <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -52,17 +218,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="276">
+              <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/index.html">
+        <entry file="file://$PROJECT_DIR$/www/README.md">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+            <state relative-caret-position="552">
+              <caret line="24" column="40" lean-forward="true" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -71,7 +242,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>phaser</find>
       <find>query</find>
       <find>pha</find>
       <find>Phaser</find>
@@ -81,15 +251,24 @@
       <find>src</find>
       <find>index.b</find>
       <find>app.bun</find>
-      <find>common</find>
       <find>sky</find>
       <find>chunk</find>
       <find>webpackConfig</find>
       <find>loader</find>
-      <find>webpack</find>
       <find>scrip</find>
       <find>dude</find>
       <find>text</find>
+      <find>speed</find>
+      <find>colorIndex</find>
+      <find>health</find>
+      <find>dev</find>
+      <find>devtool</find>
+      <find>cleanWEb</find>
+      <find>maxHealth</find>
+      <find>common</find>
+      <find>port</find>
+      <find>webpack</find>
+      <find>phaser</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -98,7 +277,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/www/js/states/GameState.js" />
+        <option value="$PROJECT_DIR$/www/js/RainbowText.js" />
         <option value="$PROJECT_DIR$/www/js/index.js" />
+        <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/webpack.config.js" />
+        <option value="$PROJECT_DIR$/www/js/Player.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -107,6 +292,17 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+    <handled-path value="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+      <path value="$PROJECT_DIR$/plugins/cordova-plugin-browsersync/package.json" />
+      <path value="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/package.json" />
+    </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
@@ -130,7 +326,13 @@
             <path>
               <item name="Drowner" type="b2602c69:ProjectViewProjectNode" />
               <item name="Drowner" type="462c0819:PsiDirectoryNode" />
-              <item name="platforms" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Drowner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Drowner" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="states" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Drowner" type="b2602c69:ProjectViewProjectNode" />
@@ -162,8 +364,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/www/js" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/www/js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -189,12 +391,12 @@
       <option name="presentableId" value="Default" />
       <updated>1571582836249</updated>
       <workItem from="1571582837882" duration="8081000" />
-      <workItem from="1571592308742" duration="7414000" />
+      <workItem from="1571592308742" duration="11408000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="917000" />
+    <option name="totallyTimeSpent" value="4911000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1417" extended-state="6" />
@@ -207,7 +409,7 @@
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32925898" />
-      <window_info anchor="bottom" id="Terminal" order="3" weight="0.32925898" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.32925898" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="TypeScript" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
@@ -237,17 +439,100 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+        <state relative-caret-position="46">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/states/GameState.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="28" selection-start-column="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/app.bundle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="6493" column="422" selection-start-line="6493" selection-start-column="422" selection-end-line="6493" selection-end-column="422" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/phaser-ui.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/Player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.production.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="23">
+          <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/README.md">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/Boot.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/Game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="24" column="40" lean-forward="true" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
         </state>
       </provider>
     </entry>

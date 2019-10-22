@@ -1,37 +1,29 @@
-import Phaser from 'phaser';
+/**
+ * Application Constructor. Ties in Cordova state events with Phaser Game State.
+ */
+var app = {
+  initialize: function () {
+    document.addEventListener(
+      'deviceready',
+      this.onDeviceReady.bind(this),
+      false
+    )
+  },
 
-let playerState = {
-    hungry: 100
-};
-let playerView;
-let hungryView = '';
+  // deviceready Event Handler
+  //
+  // Bind any cordova events here. Common events are:
+  // 'pause', 'resume', etc.
+  onDeviceReady: function () {
+    this.receivedEvent('deviceready')
 
-let config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
-    }
-};
+    // When the device is ready, start Phaser Boot state.
+    window.game.state.start('Boot')
+  },
 
-let game = new Phaser.Game(config);
-
-function preload () {
-    this.load.spritesheet('dude',
-      'assets/dude.png',
-      { frameWidth: 32, frameHeight: 48 }
-    );
+  receivedEvent: function (id) {
+    console.log('Received Event: ' + id)
+  }
 }
 
-function create () {
-    playerView = this.add.sprite(100, 450, 'dude');
-    hungryView = this.add.text(16, 16, `Score: ${playerState.hungry}`, { fontSize: '32px', fill: 'green' });
-}
-
-function update () {
-
-}
-
+app.initialize()

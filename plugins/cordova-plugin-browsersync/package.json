@@ -1,35 +1,32 @@
 {
-  "_from": "cordova-plugin-browsersync",
-  "_id": "cordova-plugin-browsersync@1.1.0",
+  "_from": "git+https://git@github.com/awwong1/cordova-plugin-browsersync.git",
+  "_id": "cordova-plugin-browsersync@1.0.0",
   "_inBundle": false,
-  "_integrity": "sha512-IhQIPfcvu/EUkt4QGMqhO9+CMSUioPOTe32ZK7mkfvsPBGsOk24SD027csBGCzNY2hqLxvxkaA9bI6tcdASWZg==",
+  "_integrity": "",
   "_location": "/cordova-plugin-browsersync",
   "_phantomChildren": {
+    "fs.realpath": "1.0.0",
     "inflight": "1.0.6",
-    "inherits": "2.0.4",
+    "inherits": "2.0.3",
     "minimatch": "3.0.4",
     "once": "1.4.0",
     "path-is-absolute": "1.0.1",
-    "util-deprecate": "1.0.2",
     "xmldom": "0.1.27"
   },
   "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "cordova-plugin-browsersync",
-    "name": "cordova-plugin-browsersync",
-    "escapedName": "cordova-plugin-browsersync",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
+    "type": "git",
+    "raw": "git+https://git@github.com/awwong1/cordova-plugin-browsersync.git",
+    "rawSpec": "git+https://git@github.com/awwong1/cordova-plugin-browsersync.git",
+    "saveSpec": "git+https://git@github.com/awwong1/cordova-plugin-browsersync.git",
+    "fetchSpec": "https://git@github.com/awwong1/cordova-plugin-browsersync.git",
+    "gitCommittish": null
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-browsersync/-/cordova-plugin-browsersync-1.1.0.tgz",
-  "_shasum": "4ee6b54700090a66c345289b9e3823ee8baeb042",
-  "_spec": "cordova-plugin-browsersync",
+  "_resolved": "git+https://git@github.com/awwong1/cordova-plugin-browsersync.git#6bee2809954aea08e73894e8738c73be6395b78c",
+  "_spec": "git+https://git@github.com/awwong1/cordova-plugin-browsersync.git",
   "_where": "/Users/infinitybuddha/Documents/projects/Drowner",
   "author": {
     "name": "Parashuram",
@@ -47,19 +44,19 @@
     ]
   },
   "dependencies": {
-    "browser-sync": "^2.12.3",
-    "cheerio": "^0.19.0",
+    "browser-sync": "^2.18.13",
+    "cheerio": "^1.0.0-rc.2",
     "csp-parse": "0.0.2",
     "elementtree": "^0.1.6",
-    "glob": "^5.0.15",
-    "npm": "^2.13.5",
-    "plist": "^1.1.0",
+    "glob": "^7.1.2",
+    "npm": "^5.5.1",
+    "plist": "^2.1.0",
     "q": "^1.4.1"
   },
   "deprecated": false,
   "description": "Cordova Plugin to integrate browser-sync in the workflow",
   "devDependencies": {
-    "browserify": "^11.2.0"
+    "browserify": "^14.4.0"
   },
   "homepage": "https://github.com/axemclion/cordova-plugin-browsersync#readme",
   "id": "cordova-plugin-browsersync",
@@ -79,5 +76,5 @@
   "scripts": {
     "createHook": "browserify --node --no-bundle-external --standalone=cordova-bs-plugin -o after_prepare.js -e lib/projectHook.js"
   },
-  "version": "1.1.0"
+  "version": "1.0.0"
 }

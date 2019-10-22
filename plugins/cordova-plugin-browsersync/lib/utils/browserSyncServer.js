@@ -52,6 +52,8 @@ module.exports = function(opts, cb) {
         minify: false,
         watchOptions: {},
         files: [],
+        cors: true,
+        https: true
     };
 
     if (typeof opts === 'function') {
