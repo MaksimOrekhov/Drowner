@@ -1,36 +1,30 @@
-/* globals __DEV__ */
 import Phaser from 'phaser'
-import Mushroom from '../sprites/Mushroom'
-import lang from '../lang'
 
 export default class extends Phaser.State {
-  init() { }
-  preload() { }
-
-  create() {
-    const bannerText = lang.text('welcome')
-    let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText, {
-      font: '40px Bangers',
-      fill: '#77BFA3',
-      smoothed: false
-    })
-
-    banner.padding.set(10, 16)
-    banner.anchor.setTo(0.5)
-
-    this.mushroom = new Mushroom({
-      game: this.game,
-      x: this.world.centerX,
-      y: this.world.centerY,
-      asset: 'mushroom'
-    })
-
-    this.game.add.existing(this.mushroom)
+  init () {
+    this.stage.backgroundColor = '#EDEEC9'
+    this.petAge = 0
+  }
+  preload () {
+    this.load.image('mushroomSmall', './assets/images/mushroom2.png')
+    this.load.image('mushroomBigger', './assets/images/icon-192px.png')
+    this.load.image('mushroomBig', './assets/images/icon-512px.png')
   }
 
-  render() {
-    if (__DEV__) {
-      this.game.debug.spriteInfo(this.mushroom, 32, 32)
-    }
+  create () {
+    this.countGlobalTime()
+    this.add.image(350, 150, 'mushroomSmall')
+  }
+
+  update () {
+    console.log('---', this.petAge)
+    if (this.petAge === 3) this.add.image(300, 100, 'mushroomBigger')
+    if (this.petAge === 6) this.add.image(150, 50, 'mushroomBig')
+  }
+
+  countGlobalTime () {
+    setInterval(() => {
+      this.petAge += 1
+    }, 2000)
   }
 }
