@@ -3,9 +3,8 @@ import Phaser from 'phaser';
 export default class Game extends Phaser.Scene {
   constructor (scene, game) {
     super('GameState');
-    this.timeCounter = 0;
     this.fullness = 100;
-    this.timeCoeff = 24;
+    this.timeCoeff = 1;
   }
 
   init () {
@@ -25,10 +24,6 @@ export default class Game extends Phaser.Scene {
     });
   }
 
-  updateCounter () {
-    this.timeCounter += 1;
-  }
-
   fullnessReduction (time) {
     if (this.fullness === 0) {
       this.dieMessage()
@@ -42,6 +37,5 @@ export default class Game extends Phaser.Scene {
   }
 
   update () {
-    console.log(this.fullness)
   }
 }
