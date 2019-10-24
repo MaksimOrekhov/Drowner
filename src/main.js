@@ -1,8 +1,6 @@
-import 'pixi'
-import 'p2'
+/* eslint-disable no-new */
 import Phaser from 'phaser'
-
-import GameState from './states/Game'
+import GameState from './GameState'
 
 import config from './config'
 
@@ -14,9 +12,9 @@ class Game extends Phaser.Game {
 
     super(width, height, Phaser.CANVAS, 'content', null)
 
-    this.state.add('Game', GameState, false)
+    this.scene.add('Game', new GameState(), false)
     this.state.start('Game')
   }
 }
 
-window.game = new Game()
+new Phaser.Game(config)
