@@ -3,13 +3,14 @@ import Phaser from 'phaser'
 export default class Game extends Phaser.Scene {
   constructor () {
     super('Game')
+    this.pet = null
     this.petAge = 0
-    this.growthStages = [
-      { age: 0, key: 'child' },
-      { age: 1, key: 'teenager' },
-      { age: 3, key: 'grownUp' },
-      { age: 6, key: 'death' },
-    ]
+    this.growthStages = {
+      child: 0,
+      teenager: 1,
+      grownUp: 3,
+      death: 5
+    }
   }
 
   init () {
@@ -17,15 +18,24 @@ export default class Game extends Phaser.Scene {
   }
 
   preload () {
-    this.load.image('child', '../assets/images/mushroom2.png')
-    this.load.image('teenager', '../assets/images/icon-192px.png')
-    this.load.image('grownUp', '../assets/images/icon-512px.png')
+    this.load.spritesheet('child', '../assets/images/mushroom2.png', {
+      frameWidth: 64,
+      frameHeight: 64
+    })
+    this.load.spritesheet('teenager', '../assets/images/icon-192px.png', {
+      frameWidth: 192,
+      frameHeight: 192
+    })
+    this.load.spritesheet('grownUp', '../assets/images/icon-512px.png', {
+      frameWidth: 512,
+      frameHeight: 512
+    })
     this.load.image('death', '../assets/images/phaser.png')
   }
 
   create () {
     this.time.addEvent({ delay: 3000, callback: this.updateAge, callbackScope: this, loop: true })
-    this.add.image(400, 400, 'child')
+    this.pet = this.add.sprite(400, 400, 'child')
   }
 
   update () {
@@ -35,8 +45,24 @@ export default class Game extends Phaser.Scene {
   updateAge () {
     this.petAge += 1
 
-    this.growthStages.map(stage => {
-      stage.age === this.petAge && this.add.image(400, 400, stage.key)
-    })
+    switch(this.petAge) {
+      case this.growthStages.teenager:
+        this.pet.setTexture('teenager') // меняем текстуру спрайта
+        break
+      case this.growthStages.grownUp:
+        this.pet.setTexture('grownUp')
+        break
+      case this.growthStages.death:
+        this.pet.setTexture() // вставляем пустую текстуру
+        this.add.image(400, 400,'death')
+        this.time.addEvent({ delay: 3000, callback: this.showGameOverScene, callbackScope: this, loop: false })
+
+        this.petAge = 0
+        break
+    }
+  }
+
+  showGameOverScene() {
+    this.scene.start('GameOver')
   }
 }
