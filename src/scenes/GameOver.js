@@ -15,7 +15,7 @@ export default class GameOver extends Phaser.Scene {
   }
 
   create () {
-    this.add.text(100, 100, 'GAME OVER. Your pet is dead.', {
+    this.add.text(100, 100, 'ИГРА ОКОНЧЕНА. Ваш питомец умер.', {
       font: '40px Bangers',
       fill: '#7744ff'
     })
