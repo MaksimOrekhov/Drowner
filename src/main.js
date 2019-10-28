@@ -6,6 +6,6 @@ class Game extends Phaser.Game {
   constructor () {
     super(config, Phaser.AUTO)
 
-    this.scene.start('GameState')
+    this.scene.start('StartScreen')
   }
 }
