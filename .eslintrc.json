@@ -1,15 +1,16 @@
 {
   "parser": "babel-eslint",
-  "extends": "standard",
+  "extends": "prettier",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
   },
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  },
   "env": {
     "browser": true
-  },
-  "rules": {
-    "import/no-unresolved": [2]
   },
   "globals": {
     "phaser": true
