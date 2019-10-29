@@ -17,19 +17,19 @@ export default class Game extends Phaser.Scene {
     init() {}
 
     preload() {
-        this.load.spritesheet('child', '../assets/images/mushroom2.png', {
+        this.load.spritesheet('child', 'assets/images/mushroom2.png', {
             frameWidth: 64,
             frameHeight: 64,
         });
-        this.load.spritesheet('teenager', '../assets/images/icon-192px.png', {
+        this.load.spritesheet('teenager', 'assets/images/icon-192px.png', {
             frameWidth: 192,
             frameHeight: 192,
         });
-        this.load.spritesheet('grownUp', '../assets/images/icon-512px.png', {
+        this.load.spritesheet('grownUp', 'assets/images/icon-512px.png', {
             frameWidth: 512,
             frameHeight: 512,
         });
-        this.load.image('death', '../assets/images/phaser.png');
+        this.load.image('death', 'assets/images/phaser.png');
     }
 
     create() {
