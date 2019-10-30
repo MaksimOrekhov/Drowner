@@ -17,35 +17,64 @@ export default class Game extends Phaser.Scene {
     init() {}
 
     preload() {
-        this.load.spritesheet('child', 'assets/images/mushroom2.png', {
-            frameWidth: 64,
-            frameHeight: 64,
-        });
-        this.load.spritesheet('teenager', 'assets/images/icon-192px.png', {
-            frameWidth: 192,
-            frameHeight: 192,
-        });
-        this.load.spritesheet('grownUp', 'assets/images/icon-512px.png', {
-            frameWidth: 512,
-            frameHeight: 512,
-        });
-        this.load.image('death', 'assets/images/phaser.png');
+        this.load.path = 'assets/images/';
+        this.load.image('zombie1', 'character_zombie_walk0.png');
+        this.load.image('zombie2', 'character_zombie_walk1.png');
+        this.load.image('zombie3', 'character_zombie_walk2.png');
+        this.load.image('zombie4', 'character_zombie_walk3.png');
+        this.load.image('zombie5', 'character_zombie_walk4.png');
+        this.load.image('zombie6', 'character_zombie_walk5.png');
+        this.load.image('zombie7', 'character_zombie_walk6.png');
+        this.load.image('zombie8', 'character_zombie_walk7.png');
+
+        // this.load.spritesheet('child', 'assets/images/zombie.png', {
+        //     frameWidth: 192,
+        //     frameHeight: 256,
+        // });
+        // this.load.spritesheet('teenager', 'assets/images/icon-192px.png', {
+        //     frameWidth: 192,
+        //     frameHeight: 192,
+        // });
+        // this.load.spritesheet('grownUp', 'assets/images/icon-512px.png', {
+        //     frameWidth: 512,
+        //     frameHeight: 512,
+        // });
+        // this.load.image('death', 'assets/images/phaser.png');
     }
 
     create() {
-        this.time.addEvent({
-            delay: 30000,
-            callback: this.updateAge,
-            callbackScope: this,
-            loop: true,
-        });
-        this.time.addEvent({
-            delay: 100,
-            callback: this.updateFulness,
-            callbackScope: this,
-            loop: true,
-        });
-        this.pet = this.add.sprite(400, 400, 'child');
+        // this.time.addEvent({
+        //     delay: 30000,
+        //     callback: this.updateAge,
+        //     callbackScope: this,
+        //     loop: true,
+        // });
+        // this.time.addEvent({
+        //     delay: 100,
+        //     callback: this.updateFulness,
+        //     callbackScope: this,
+        //     loop: true,
+        // });
+        this.pet = this.add.sprite(200, 200, 'child');
+
+        this.anims.create({
+            key: "child_anim",
+            // frames: this.anims.generateFrameNumbers("child"),
+            frames: [
+                { key: 'zombie1', frame: null },
+                { key: 'zombie2', frame: null },
+                { key: 'zombie3', frame: null },
+                { key: 'zombie4', frame: null },
+                { key: 'zombie5', frame: null },
+                { key: 'zombie6', frame: null },
+                { key: 'zombie7', frame: null },
+                { key: 'zombie8', frame: null, duration: 50 }
+            ],
+            frameRate: 15,
+            repeat: -1
+        })
+        this.add.sprite(200, 200, 'zombie1').play('child_anim');
+        // this.pet.play("child_anim")
     }
 
     update() {}
