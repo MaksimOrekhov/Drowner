@@ -55,7 +55,7 @@ export default class Game extends Phaser.Scene {
         //     callbackScope: this,
         //     loop: true,
         // });
-        this.pet = this.add.sprite(200, 200, 'child');
+        // this.pet = this.add.sprite(200, 200, 'child');
 
         this.anims.create({
             key: "child_anim",
