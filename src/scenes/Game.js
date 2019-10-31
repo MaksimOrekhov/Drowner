@@ -18,8 +18,8 @@ export default class Game extends Phaser.Scene {
 
     preload() {
         this.load.spritesheet('child', 'assets/images/bird.png', {
-            frameWidth: 128,
-            frameHeight: 128,
+            frameWidth: 180,
+            frameHeight: 175,
         });
         // this.load.spritesheet('teenager', 'assets/images/icon-192px.png', {
         //     frameWidth: 192,
@@ -45,15 +45,17 @@ export default class Game extends Phaser.Scene {
         //     callbackScope: this,
         //     loop: true,
         // });
-        this.pet = this.add.sprite(200, 200, 'child');
+        this.pet = this.add.sprite(300, 300, 'child');
 
         this.anims.create({
-            key: "child_anim",
-            frames: this.anims.generateFrameNumbers("child"),
-            frameRate: 15,
-            repeat: -1
-        })
-        this.pet.play("child_anim")
+            key: 'child_anim',
+            frames: this.anims.generateFrameNumbers('child', {
+                frames: [0, 1, 2, 1],
+            }),
+            frameRate: 5,
+            repeat: -1,
+        });
+        this.pet.play('child_anim');
     }
 
     update() {}
