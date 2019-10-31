@@ -21,6 +21,7 @@ export default class Game extends Phaser.Scene {
             frameWidth: 180,
             frameHeight: 175,
         });
+        this.load.image('food', 'assets/images/Brownie.png');
         // this.load.spritesheet('teenager', 'assets/images/icon-192px.png', {
         //     frameWidth: 192,
         //     frameHeight: 192,
@@ -39,13 +40,28 @@ export default class Game extends Phaser.Scene {
         //     callbackScope: this,
         //     loop: true,
         // });
-        // this.time.addEvent({
-        //     delay: 100,
-        //     callback: this.updateFulness,
-        //     callbackScope: this,
-        //     loop: true,
-        // });
+        this.time.addEvent({
+            delay: 500,
+            callback: this.updateFulness,
+            callbackScope: this,
+            loop: true,
+        });
+        this.fulnessBarTxt = this.add.text(20, 20, `Сытость: ${this.fulness}`);
+        this.time.addEvent({
+            delay: 500,
+            callback: this.fulnessBar,
+            callbackScope: this,
+            loop: true,
+        });
+        // Изображение персонажа
         this.pet = this.add.sprite(300, 300, 'child');
+        // Иконка кормежки
+        this.food = this.add.image(300, 400, 'food');
+        this.food.setScale(2, 2);
+        this.food.setInteractive();
+        this.food.on('pointerdown', () => {
+            this.feedPet();
+        });
 
         this.anims.create({
             key: 'child_anim',
@@ -58,7 +74,40 @@ export default class Game extends Phaser.Scene {
         this.pet.play('child_anim');
     }
 
-    update() {}
+    fulnessBar() {
+        this.fulnessBarTxt.setText(`Сытость: ${this.fulness}`);
+    }
+
+    feedPet() {
+        if (this.fulness <= 90) {
+            this.fulness += 10;
+            this.foodMessage = this.add.text(
+                100,
+                100,
+                'Спасибо бро, этот бургер был не лишним!'
+            );
+            this.time.addEvent({
+                delay: 1000,
+                callback: this.foodMessage.destroy,
+                callbackScope: this.foodMessage,
+                loop: false,
+            });
+        } else {
+            if (!this.foodMessage) {
+                this.foodMessage = this.add.text(
+                    100,
+                    100,
+                    'Слишком много хавки! Я сыт!'
+                );
+                this.time.addEvent({
+                    delay: 1000,
+                    callback: this.foodMessage.destroy,
+                    callbackScope: this.foodMessage,
+                    loop: false,
+                });
+            }
+        }
+    }
 
     updateAge() {
         this.petAge += 1;
@@ -87,12 +136,8 @@ export default class Game extends Phaser.Scene {
 
     updateFulness() {
         this.fulness -= 1;
-        console.log(this.fulness);
         if (this.fulness <= 50) {
-            this.add.text(100, 100, 'Ваш питомец на половину голоден!', {
-                font: '40px Bangers',
-                fill: '#7744ff',
-            });
+            this.add.text(10, 10, 'Я голоден! Дай хавки!');
         }
         if (!this.fulness) {
             this.scene.start('GameOver');
@@ -101,5 +146,12 @@ export default class Game extends Phaser.Scene {
 
     showGameOverScene() {
         this.scene.start('GameOver');
+    }
+
+    update() {
+        // Очистка сообщения о сытости
+        if (this.foodMessage) {
+            this.foodMessage = undefined;
+        }
     }
 }
