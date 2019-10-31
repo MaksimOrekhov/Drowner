@@ -66,8 +66,7 @@ export default class Game extends Phaser.Scene {
             callbackScope: this,
             loop: true,
         });
-        // Изображение персонажа
-        this.pet = this.add.sprite(300, 300, 'child');
+
         // Иконка кормежки
         this.food = this.add.image(300, 400, 'food');
         this.food.setScale(2, 2);
