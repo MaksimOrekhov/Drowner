@@ -53,12 +53,7 @@ export default class Game extends Phaser.Scene {
         });
 
         this.pet = this.add.sprite(200, 350, 'child');
-        this.time.addEvent({
-            delay: 500,
-            callback: this.updateFulness,
-            callbackScope: this,
-            loop: true,
-        });
+
         this.fulnessBarTxt = this.add.text(20, 20, `Сытость: ${this.fulness}`);
         this.time.addEvent({
             delay: 500,
