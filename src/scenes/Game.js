@@ -4,6 +4,7 @@ export default class Game extends Phaser.Scene {
     constructor() {
         super('Game');
         this.pet = null;
+        this.background = null;
         this.petAge = 0;
         this.fulness = 100;
         this.growthStages = {
@@ -12,40 +13,45 @@ export default class Game extends Phaser.Scene {
             grownUp: 3,
             death: 5,
         };
+        this.globalTimeValue = 24 * 60 * 60 * 1000 // 24 часа
     }
 
     init() {}
 
     preload() {
+        this.load.spritesheet('forest_day', 'assets/images/ForestDay.png', {
+            frameWidth: '100%',
+            frameHeight: '100%',
+        })
+        this.load.spritesheet('forest_night', 'assets/images/ForestNight.png', {
+            frameWidth: '100%',
+            frameHeight: '100%',
+        })
         this.load.spritesheet('child', 'assets/images/bird.png', {
-            frameWidth: 180,
+            frameWidth: 183,
             frameHeight: 175,
         });
-        // this.load.spritesheet('teenager', 'assets/images/icon-192px.png', {
-        //     frameWidth: 192,
-        //     frameHeight: 192,
-        // });
-        // this.load.spritesheet('grownUp', 'assets/images/icon-512px.png', {
-        //     frameWidth: 512,
-        //     frameHeight: 512,
-        // });
-        // this.load.image('death', 'assets/images/phaser.png');
     }
 
     create() {
-        // this.time.addEvent({
-        //     delay: 30000,
-        //     callback: this.updateAge,
-        //     callbackScope: this,
-        //     loop: true,
-        // });
-        // this.time.addEvent({
-        //     delay: 100,
-        //     callback: this.updateFulness,
-        //     callbackScope: this,
-        //     loop: true,
-        // });
-        this.pet = this.add.sprite(300, 300, 'child');
+        this.background = this.add.sprite(-800, 0, 'forest_day')
+        this.background.setOrigin(0, 0)
+        this.changeBackForDayOrNight()
+
+        this.time.addEvent({
+            delay: this.globalTimeValue,
+            callback: this.updateAge,
+            callbackScope: this,
+            loop: true,
+        });
+        this.time.addEvent({
+            delay: this.globalTimeValue / 2880, // 30 sec
+            callback: this.updateFulness,
+            callbackScope: this,
+            loop: true,
+        });
+
+        this.pet = this.add.sprite(200, 350, 'child');
 
         this.anims.create({
             key: 'child_anim',
@@ -73,12 +79,6 @@ export default class Game extends Phaser.Scene {
             case this.growthStages.death:
                 this.pet.setTexture(); // вставляем пустую текстуру
                 this.add.image(400, 400, 'death');
-                this.time.addEvent({
-                    delay: 3000,
-                    callback: this.showGameOverScene,
-                    callbackScope: this,
-                    loop: false,
-                });
 
                 this.petAge = 0;
                 break;
@@ -99,7 +99,14 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    showGameOverScene() {
-        this.scene.start('GameOver');
+    changeBackForDayOrNight() {
+        const date = new Date()
+        let time = date.getHours()
+
+        if(time >= 18 || time <= 8) {
+            this.background.setTexture('forest_night')
+        } else {
+            this.background.setTexture('forest_day')
+        }
     }
 }
