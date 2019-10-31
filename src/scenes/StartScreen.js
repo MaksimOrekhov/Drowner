@@ -17,7 +17,7 @@ export default class StartScreen extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(200, 400, 'start')
+        this.add.image(100, 400, 'start')
 
         this.gameStart = this.add.text(100, 100, 'Начать игру', {
             font: '40px Bangers',
