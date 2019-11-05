@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import Fulnes from '../modules/Fulness'
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -57,7 +58,7 @@ export default class Game extends Phaser.Scene {
         this.fulnessBarTxt = this.add.text(20, 20, `Сытость: ${this.fulness}`);
         this.time.addEvent({
             delay: 500,
-            callback: this.fulnessBar,
+            callback: Fulnes.fulnessBar(this.fulnessBarTxt, this.fulness),
             callbackScope: this,
             loop: true,
         });
@@ -81,9 +82,9 @@ export default class Game extends Phaser.Scene {
         this.pet.play('child_anim');
     }
 
-    fulnessBar() {
-        this.fulnessBarTxt.setText(`Сытость: ${this.fulness}`);
-    }
+    // fulnessBar() {
+    //     this.fulnessBarTxt.setText(`Сытость: ${this.fulness}`);
+    // }
 
     feedPet() {
         if (this.fulness <= 90) {
