@@ -37,7 +37,6 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-        this.fulnessClass = new Fulness(this, this.fulness);
         this.background = this.add.sprite(-800, 0, 'forest_day');
         this.background.setOrigin(0, 0);
         this.changeBackForDayOrNight();
@@ -56,6 +55,8 @@ export default class Game extends Phaser.Scene {
         });
 
         this.pet = this.add.sprite(200, 350, 'child');
+
+        this.fulnessClass = new Fulness(this, this.fulness);
 
         // Иконка кормежки
         this.food = this.add.image(300, 400, 'food');
