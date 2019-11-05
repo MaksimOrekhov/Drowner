@@ -1,26 +1,20 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
 
 export default class GameOver extends Phaser.Scene {
     constructor() {
-        super('GameOver')
+        super('GameOver');
     }
 
-    init() {
+    init() {}
 
-    }
-
-    preload() {
-
-    }
+    preload() {}
 
     create() {
         this.add.text(100, 100, 'ИГРА ОКОНЧЕНА. Ваш питомец умер.', {
             font: '40px Bangers',
-            fill: '#7744ff'
-        })
+            fill: '#7744ff',
+        });
     }
 
-    update() {
-
-    }
+    update() {}
 }

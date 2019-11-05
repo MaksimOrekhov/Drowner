@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Fulness from '../modules/Fulness'
+import Fulness from '../modules/Fulness';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -14,8 +14,8 @@ export default class Game extends Phaser.Scene {
             grownUp: 3,
             death: 5,
         };
-        this.globalTimeValue = 24 * 60 * 60 * 1000 // 24 часа
-        this.fulnessClass = null
+        this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
+        this.fulnessClass = null;
     }
 
     init() {}
@@ -24,11 +24,11 @@ export default class Game extends Phaser.Scene {
         this.load.spritesheet('forest_day', 'assets/images/ForestDay.png', {
             frameWidth: '100%',
             frameHeight: '100%',
-        })
+        });
         this.load.spritesheet('forest_night', 'assets/images/ForestNight.png', {
             frameWidth: '100%',
             frameHeight: '100%',
-        })
+        });
         this.load.spritesheet('child', 'assets/images/bird.png', {
             frameWidth: 183,
             frameHeight: 175,
@@ -37,9 +37,10 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-        this.background = this.add.sprite(-800, 0, 'forest_day')
-        this.background.setOrigin(0, 0)
-        this.changeBackForDayOrNight()
+        this.fulnessClass = new Fulness(this, this.fulness);
+        this.background = this.add.sprite(-800, 0, 'forest_day');
+        this.background.setOrigin(0, 0);
+        this.changeBackForDayOrNight();
 
         this.time.addEvent({
             delay: this.globalTimeValue,
@@ -55,15 +56,6 @@ export default class Game extends Phaser.Scene {
         });
 
         this.pet = this.add.sprite(200, 350, 'child');
-
-        // this.fulnessBarTxt = this.add.text(20, 20, `Сытость: ${this.fulness}`);
-        this.fulnessClass = new Fulness(this, this.fulness)
-        // this.time.addEvent({
-        //     delay: 500,
-        //     callback: this.fulnessClass.fulnessBar(this.fulnessBarTxt, this.fulness),
-        //     callbackScope: this,
-        //     loop: true,
-        // });
 
         // Иконка кормежки
         this.food = this.add.image(300, 400, 'food');
@@ -142,18 +134,17 @@ export default class Game extends Phaser.Scene {
         if (!this.fulness) {
             this.scene.start('GameOver');
         }
-        // let fulness = new Fulness(this, this.fulnessBarTxt, this.fulness)
-        this.fulnessClass.updateFulnessBar(this.fulness)
+        this.fulnessClass.updateFulnessBar(this.fulness);
     }
 
     changeBackForDayOrNight() {
-        const date = new Date()
-        let time = date.getHours()
+        const date = new Date();
+        let time = date.getHours();
 
-        if(time >= 18 || time <= 8) {
-            this.background.setTexture('forest_night')
+        if (time >= 18 || time <= 8) {
+            this.background.setTexture('forest_night');
         } else {
-            this.background.setTexture('forest_day')
+            this.background.setTexture('forest_day');
         }
     }
 
