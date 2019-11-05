@@ -1,13 +1,16 @@
 class Fulness {
-  constructor(scene, fulnessBarTxt, fulness) {
-    this.scene = scene
-    this.fulnessBarTxt = fulnessBarTxt
+  constructor(scene, fulness) {
+    this.fulnessBarTxt = scene.add.text(20, 20, `Сытость: ${this.fulness}`)
     this.fulness = fulness
 
     this.fulnessBar()
   }
   fulnessBar() {
     this.fulnessBarTxt.setText(`Сытость: ${this.fulness}`);
+  }
+
+  updateFulnessBar(fulness) {
+    this.fulnessBarTxt.setText(`Сытость: ${fulness}`);
   }
 }
 

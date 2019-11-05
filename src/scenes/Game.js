@@ -15,6 +15,7 @@ export default class Game extends Phaser.Scene {
             death: 5,
         };
         this.globalTimeValue = 24 * 60 * 60 * 1000 // 24 часа
+        this.fulnessClass = null
     }
 
     init() {}
@@ -36,7 +37,6 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-
         this.background = this.add.sprite(-800, 0, 'forest_day')
         this.background.setOrigin(0, 0)
         this.changeBackForDayOrNight()
@@ -56,14 +56,14 @@ export default class Game extends Phaser.Scene {
 
         this.pet = this.add.sprite(200, 350, 'child');
 
-        this.fulnessBarTxt = this.add.text(20, 20, `Сытость: ${this.fulness}`);
-        let fulness = new Fulness(this, this.fulnessBarTxt, this.fulness)
-        this.time.addEvent({
-            delay: 500,
-            callback: fulness.fulnessBar(this.fulnessBarTxt, this.fulness),
-            callbackScope: this,
-            loop: true,
-        });
+        // this.fulnessBarTxt = this.add.text(20, 20, `Сытость: ${this.fulness}`);
+        this.fulnessClass = new Fulness(this, this.fulness)
+        // this.time.addEvent({
+        //     delay: 500,
+        //     callback: this.fulnessClass.fulnessBar(this.fulnessBarTxt, this.fulness),
+        //     callbackScope: this,
+        //     loop: true,
+        // });
 
         // Иконка кормежки
         this.food = this.add.image(300, 400, 'food');
@@ -83,10 +83,6 @@ export default class Game extends Phaser.Scene {
         });
         this.pet.play('child_anim');
     }
-
-    // fulnessBar() {
-    //     this.fulnessBarTxt.setText(`Сытость: ${this.fulness}`);
-    // }
 
     feedPet() {
         if (this.fulness <= 90) {
@@ -146,8 +142,8 @@ export default class Game extends Phaser.Scene {
         if (!this.fulness) {
             this.scene.start('GameOver');
         }
-        let fulness = new Fulness(this, this.fulnessBarTxt, this.fulness)
-        fulness.fulnessBar()
+        // let fulness = new Fulness(this, this.fulnessBarTxt, this.fulness)
+        this.fulnessClass.updateFulnessBar(this.fulness)
     }
 
     changeBackForDayOrNight() {
