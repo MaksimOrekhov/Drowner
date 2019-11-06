@@ -16,17 +16,16 @@ export default class GettingFood extends Phaser.Scene {
 
     create() {
         this.add.text(250, 50, 'Экран кормёжки');
-        var x = 100;
-        var y = 200;
+        var x = 250;
+        var y = 100;
         FOOD_TYPES.map((item, i) => {
-            x += i + 30;
-            y += i + 20;
-            console.log(x)
+            x += 100;
             if (i % 2 === 0) {
-                x = 100;
+                x = 250;
+                y += 100;
             }
             this[item] = this.add.image(x, y, `food_${i}`);
-            this[item].setScale(2, 2);
+            this[item].setScale(3, 3);
         });
     }
 
