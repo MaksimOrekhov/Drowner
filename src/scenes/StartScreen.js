@@ -1,43 +1,39 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
 
 export default class StartScreen extends Phaser.Scene {
     constructor() {
-        super('StartScreen')
+        super('StartScreen');
 
-        this.gameStart = null
-        this.options = null
+        this.gameStart = null;
+        this.options = null;
     }
 
-    init() {
-
-    }
+    init() {}
 
     preload() {
-        this.load.image('start', './assets/images/start_screen.jpg')
+        this.load.image('start', './assets/images/start_screen.jpg');
     }
 
     create() {
-        this.add.image(100, 400, 'start')
+        this.add.image(100, 400, 'start');
 
         this.gameStart = this.add.text(100, 100, 'Начать игру', {
             font: '40px Bangers',
-            fill: '#fff'
-        })
+            fill: '#fff',
+        });
 
         this.options = this.add.text(100, 200, 'Настройки', {
             font: '40px Bangers',
-            fill: '#fff'
-        })
+            fill: '#fff',
+        });
 
-        this.gameStart.setInteractive()
-        this.options.setInteractive()
+        this.gameStart.setInteractive();
+        this.options.setInteractive();
 
         this.gameStart.on('pointerdown', (pointer, localX, localY, event) => {
-            this.scene.start('Game')
-        })
+            this.scene.start('Game');
+        });
     }
 
-    update() {
-
-    }
+    update() {}
 }
