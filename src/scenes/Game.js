@@ -15,11 +15,12 @@ export default class Game extends Phaser.Scene {
             grownUp: 3,
             death: 5,
         };
-        this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
+        this.globalTimeValue = 24 * 60 * 60 * 100; // 24 часа
         this.fulnessClass = null;
     }
 
-    init() {}
+    init() {
+    }
 
     preload() {
         this.load.spritesheet('forest_day', 'assets/images/ForestDay.png', {
@@ -63,15 +64,19 @@ export default class Game extends Phaser.Scene {
         this.fulnessClass = new Fulness(this, this.fulness);
         new Growth(this);
 
-        // Иконка кормежки
+        // Иконка перехода на сцену кормёжки
         this.food = this.add.image(300, 400, 'food');
         this.food.setScale(2, 2);
         this.food.setInteractive();
         this.food.on('pointerdown', () => {
-            this.feedPet();
+            this.startGettingFood();
         });
 
         this.pet.play('child_anim');
+    }
+
+    startGettingFood() {
+        this.scene.start('GettingFood');
     }
 
     feedPet() {

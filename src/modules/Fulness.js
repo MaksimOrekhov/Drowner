@@ -5,6 +5,7 @@ class Fulness {
 
         this.fulnessBar();
     }
+
     fulnessBar() {
         this.fulnessBarTxt = this.scene.add.text(
             20,
