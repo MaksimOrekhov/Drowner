@@ -43,7 +43,7 @@ export default class Game extends Phaser.Scene {
             frameWidth: 183,
             frameHeight: 175,
         });
-        this.load.image('food', 'assets/images/Brownie.png');
+        this.load.image('food', 'assets/images/food/Brownie.png');
     }
 
     create() {
