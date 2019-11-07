@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import Fulness from '../modules/Fulness';
 import Growth from '../modules/Growth';
+import Energy from '../modules/Energy';
+import Sleep from '../modules/Sleep';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -9,6 +11,7 @@ export default class Game extends Phaser.Scene {
         this.background = null;
         this.petAge = 0;
         this.fulness = 100;
+        this.energy = 100;
         this.growthStages = {
             child: 0,
             teenager: 1,
@@ -17,6 +20,8 @@ export default class Game extends Phaser.Scene {
         };
         this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
         this.fulnessClass = null;
+        this.energyInstance = null;
+        this.sleepInstance = null;
     }
 
     init() {}
@@ -61,6 +66,8 @@ export default class Game extends Phaser.Scene {
         this.pet = this.add.sprite(200, 350, 'child');
 
         this.fulnessClass = new Fulness(this, this.fulness);
+        this.energyInstance = new Energy(this);
+        this.sleepInstance = new Sleep(this);
         new Growth(this);
 
         // Иконка кормежки
@@ -69,6 +76,13 @@ export default class Game extends Phaser.Scene {
         this.food.setInteractive();
         this.food.on('pointerdown', () => {
             this.feedPet();
+        });
+
+        // Кнопка выхода на охоту
+        this.goHuntButton = this.add.text(20, 520, 'Пойти на охоту');
+        this.goHuntButton.setInteractive();
+        this.goHuntButton.on('pointerdown', () => {
+            this.energyInstance.decreaseEnergyValue();
         });
 
         this.pet.play('child_anim');
