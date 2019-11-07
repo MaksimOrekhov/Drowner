@@ -4,6 +4,7 @@ import Growth from '../modules/Growth';
 import Energy from '../modules/Energy';
 import Sleep from '../modules/Sleep';
 import Hunt from '../modules/Hunt';
+import GameDayTime from '../modules/GameDayTime';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -58,8 +59,6 @@ export default class Game extends Phaser.Scene {
         this.background = this.add.sprite(-800, 0, 'forest_day');
         this.background.setOrigin(0, 0);
 
-        this.changeBackForDayOrNight();
-
         this.time.addEvent({
             delay: this.globalTimeValue / 2880, // 30 sec
             callback: this.updateFulness,
@@ -67,7 +66,7 @@ export default class Game extends Phaser.Scene {
             loop: true,
         });
 
-        this.moneyAmountTxt = this.add.text(150, 60, `Денег: ${this.moneyAmount}`);
+        this.moneyAmountTxt = this.add.text(150, 60, `Деньги: ${this.moneyAmount}`);
 
         this.pet = this.add.sprite(200, 350, 'child');
 
@@ -76,6 +75,7 @@ export default class Game extends Phaser.Scene {
         this.sleepInstance = new Sleep(this);
         this.huntInstance = new Hunt(this);
         new Growth(this);
+        new GameDayTime(this);
 
         // Иконка перехода на сцену кормёжки
         this.food = this.add.image(300, 400, 'food');
@@ -140,17 +140,6 @@ export default class Game extends Phaser.Scene {
             this.scene.start('GameOver');
         }
         this.fulnessClass.updateFulnessBar(this.fulness);
-    }
-
-    changeBackForDayOrNight() {
-        const date = new Date();
-        let time = date.getHours();
-
-        if (time >= 18 || time <= 8) {
-            this.background.setTexture('forest_night');
-        } else {
-            this.background.setTexture('forest_day');
-        }
     }
 
     update() {
