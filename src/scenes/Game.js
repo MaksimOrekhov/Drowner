@@ -51,7 +51,7 @@ export default class Game extends Phaser.Scene {
             frameWidth: 183,
             frameHeight: 175,
         });
-        this.load.image('food', 'assets/images/Brownie.png');
+        this.load.image('food', 'assets/images/food/Brownie.png');
     }
 
     create() {
@@ -77,12 +77,12 @@ export default class Game extends Phaser.Scene {
         this.huntInstance = new Hunt(this);
         new Growth(this);
 
-        // Иконка кормежки
+        // Иконка перехода на сцену кормёжки
         this.food = this.add.image(300, 400, 'food');
         this.food.setScale(2, 2);
         this.food.setInteractive();
         this.food.on('pointerdown', () => {
-            this.feedPet();
+            this.startGettingFood();
         });
 
         // Кнопка выхода на охоту
@@ -94,6 +94,10 @@ export default class Game extends Phaser.Scene {
         });
 
         this.pet.play('child_anim');
+    }
+
+    startGettingFood() {
+        this.scene.start('GettingFood');
     }
 
     feedPet() {
