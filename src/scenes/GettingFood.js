@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import { FOOD_TYPES } from './constants';
 
 export default class GettingFood extends Phaser.Scene {
     constructor() {
@@ -9,23 +8,34 @@ export default class GettingFood extends Phaser.Scene {
     init() {}
 
     preload() {
-        this.load.image('food-tiles', 'assets/images/food/Food.png');
+        const food = this.load.image(
+            'food-tiles',
+            'assets/images/food/Food.png'
+        );
     }
 
     create() {
-        this.add.text(this.cameras.main.centerX - 60, 100, 'Экран кормёжки');
+        const title = this.add.text(
+            this.cameras.main.centerX - 60,
+            100,
+            'Экран кормёжки'
+        );
 
         /**
          * создание карты изображений, от 0 до кол-ва картинок -1 пустое поле
          */
-        let level = [[0, -1, 1, -1, 2], [-1, -1, -1, -1], [3, -1, 4, -1, 5]];
-        var map = this.make.tilemap({
-            data: level,
+        const foodMap = [
+            [0, -1, 1, -1, 2],
+            [-1, -1, -1, -1],
+            [3, -1, 4, -1, 5],
+        ];
+        const map = this.make.tilemap({
+            data: foodMap,
             tileWidth: 16,
             tileHeight: 16,
         });
-        var tileset = map.addTilesetImage('food-tiles');
-        var layer = map
+        const tileset = map.addTilesetImage('food-tiles');
+        const layer = map
             .createStaticLayer(
                 0,
                 tileset,
