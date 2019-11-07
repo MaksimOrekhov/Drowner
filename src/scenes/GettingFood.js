@@ -20,6 +20,11 @@ export default class GettingFood extends Phaser.Scene {
             100,
             'Экран кормёжки'
         );
+        const homeBtn = this.add.text(20, 20, 'Назад');
+        homeBtn.setInteractive();
+        homeBtn.on('pointerdown', () => {
+            this.scene.start('Game');
+        });
 
         /**
          * создание карты изображений, от 0 до кол-ва картинок -1 пустое поле
@@ -43,6 +48,10 @@ export default class GettingFood extends Phaser.Scene {
                 this.cameras.main.centerY - 25
             )
             .setScale(4, 4);
+    }
+
+    epta() {
+        console.log('xuepta');
     }
 
     update() {}
