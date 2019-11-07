@@ -5,6 +5,9 @@ import StartScreen from './scenes/StartScreen';
 import GettingFood from './scenes/GettingFood';
 
 const config = {
+    scale: {
+        mode: Phaser.Scale.RESIZE,
+    },
     width: '100%',
     height: '100%',
     localStorageName: 'phaseres6webpack',
