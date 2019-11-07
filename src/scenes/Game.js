@@ -3,6 +3,7 @@ import Fulness from '../modules/Fulness';
 import Growth from '../modules/Growth';
 import Energy from '../modules/Energy';
 import Sleep from '../modules/Sleep';
+import Hunt from '../modules/Hunt';
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -12,6 +13,7 @@ export default class Game extends Phaser.Scene {
         this.petAge = 0;
         this.fulness = 100;
         this.energy = 100;
+        this.strength = 1;
         this.growthStages = {
             child: 0,
             teenager: 1,
@@ -19,9 +21,11 @@ export default class Game extends Phaser.Scene {
             death: 5,
         };
         this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
+        this.moneyAmount = 0;
         this.fulnessClass = null;
         this.energyInstance = null;
         this.sleepInstance = null;
+        this.huntInstance = null;
     }
 
     init() {}
@@ -63,11 +67,14 @@ export default class Game extends Phaser.Scene {
             loop: true,
         });
 
+        this.moneyAmountTxt = this.add.text(150, 60, `Денег: ${this.moneyAmount}`);
+
         this.pet = this.add.sprite(200, 350, 'child');
 
         this.fulnessClass = new Fulness(this, this.fulness);
         this.energyInstance = new Energy(this);
         this.sleepInstance = new Sleep(this);
+        this.huntInstance = new Hunt(this);
         new Growth(this);
 
         // Иконка кормежки
@@ -83,6 +90,7 @@ export default class Game extends Phaser.Scene {
         this.goHuntButton.setInteractive();
         this.goHuntButton.on('pointerdown', () => {
             this.energyInstance.decreaseEnergyValue();
+            this.huntInstance.goHunting();
         });
 
         this.pet.play('child_anim');
