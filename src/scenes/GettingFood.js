@@ -15,6 +15,7 @@ export default class GettingFood extends Phaser.Scene {
     }
 
     create() {
+        this.GameScene = this.scene.get('Game');
         const title = this.add.text(
             this.cameras.main.centerX - 60,
             100,
@@ -34,13 +35,13 @@ export default class GettingFood extends Phaser.Scene {
             [-1, -1, -1, -1],
             [3, -1, 4, -1, 5],
         ];
-        const map = this.make.tilemap({
+        this.map = this.make.tilemap({
             data: foodMap,
             tileWidth: 16,
             tileHeight: 16,
         });
-        const tileset = map.addTilesetImage('food-tiles');
-        const layer = map
+        const tileset = this.map.addTilesetImage('food-tiles');
+        this.layer = this.map
             .createStaticLayer(
                 0,
                 tileset,
@@ -54,5 +55,27 @@ export default class GettingFood extends Phaser.Scene {
         console.log('xuepta');
     }
 
-    update() {}
+    update() {
+        let scenePoint = this.input.activePointer.positionToCamera(this.cameras.main);
+        let pointerTileX = this.map.worldToTileX(scenePoint.x);
+        let pointerTileY = this.map.worldToTileY(scenePoint.y);
+        let tile = this.layer.getTileAt(pointerTileX, pointerTileY);
+        if (tile) {
+            this.scene.start('Game');
+            switch (tile.index) {
+                case 0: {
+                    this.GameScene.feedPet(3, 5);
+                    break;
+                }
+                case 1: {
+                    this.GameScene.feedPet(5, 10);
+                    break;
+                }
+                case 2: {
+                    this.GameScene.feedPet(10, 15);
+                    break;
+                }
+            }
+        }
+    }
 }

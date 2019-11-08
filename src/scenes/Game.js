@@ -60,13 +60,14 @@ export default class Game extends Phaser.Scene {
         this.background.setOrigin(0, 0);
 
         this.time.addEvent({
-            delay: this.globalTimeValue / 2880, // 30 sec
+            delay: this.globalTimeValue / 28800, // 30 sec
             callback: this.updateFulness,
             callbackScope: this,
             loop: true,
         });
 
         this.moneyAmountTxt = this.add.text(150, 60, `Деньги: ${this.moneyAmount}`);
+        this.noMoney = this.add.text(150, 300, '');
 
         this.pet = this.add.sprite(200, 350, 'child');
 
@@ -100,26 +101,14 @@ export default class Game extends Phaser.Scene {
         this.scene.start('GettingFood');
     }
 
-    feedPet() {
-        if (this.fulness <= 90) {
-            this.fulness += 10;
-            this.foodMessage = this.add.text(
-                100,
-                100,
-                'Спасибо бро, этот бургер был не лишним!'
-            );
-            this.time.addEvent({
-                delay: 1000,
-                callback: this.foodMessage.destroy,
-                callbackScope: this.foodMessage,
-                loop: false,
-            });
-        } else {
-            if (!this.foodMessage) {
+    feedPet(fulness, money) {
+        if (this.moneyAmount - money > 0) {
+            if (this.fulness <= 90) {
+                this.fulness += fulness;
                 this.foodMessage = this.add.text(
                     100,
                     100,
-                    'Слишком много хавки! Я сыт!'
+                    'Спасибо бро, этот бургер был не лишним!'
                 );
                 this.time.addEvent({
                     delay: 1000,
@@ -127,7 +116,24 @@ export default class Game extends Phaser.Scene {
                     callbackScope: this.foodMessage,
                     loop: false,
                 });
+                this.moneyAmount -= money;
+            } else {
+                if (!this.foodMessage) {
+                    this.foodMessage = this.add.text(
+                        100,
+                        100,
+                        'Слишком много хавки! Я сыт!'
+                    );
+                    this.time.addEvent({
+                        delay: 1000,
+                        callback: this.foodMessage.destroy,
+                        callbackScope: this.foodMessage,
+                        loop: false,
+                    });
+                }
             }
+        } else {
+            console.log('---', 'хер знает как обойти эту сраную ошибку')
         }
     }
 
