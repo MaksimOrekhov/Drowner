@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { FOOD_TYPES } from './constants';
 
 export default class GettingFood extends Phaser.Scene {
     constructor() {
@@ -23,7 +24,7 @@ export default class GettingFood extends Phaser.Scene {
         );
         const homeBtn = this.add.text(20, 20, 'Назад');
         homeBtn.setInteractive();
-        homeBtn.on('pointerdown', () => {
+        homeBtn.on('pointerup', () => {
             this.scene.start('Game');
         });
 
@@ -56,34 +57,36 @@ export default class GettingFood extends Phaser.Scene {
     }
 
     update() {
-        let scenePoint = this.input.activePointer.positionToCamera(this.cameras.main);
+        let scenePoint = this.input.activePointer.positionToCamera(
+            this.cameras.main
+        );
         let pointerTileX = this.map.worldToTileX(scenePoint.x);
         let pointerTileY = this.map.worldToTileY(scenePoint.y);
         let tile = this.layer.getTileAt(pointerTileX, pointerTileY);
         if (tile) {
-            this.scene.start('Game');
             switch (tile.index) {
-                case GettingFood.FOOD_TYPES.firstFood: {
-                    this.GameScene.feedPet(3, 5);
+                case FOOD_TYPES[0].index: {
+                    this.GameScene.feedPet(
+                        FOOD_TYPES[0].fulness,
+                        FOOD_TYPES[0].cost
+                    );
                     break;
                 }
-                case GettingFood.FOOD_TYPES.secondFood: {
-                    this.GameScene.feedPet(5, 10);
+                case FOOD_TYPES[1].index: {
+                    this.GameScene.feedPet(
+                        FOOD_TYPES[1].fulness,
+                        FOOD_TYPES[1].cost
+                    );
                     break;
                 }
-                case GettingFood.FOOD_TYPES.thirdFood: {
-                    this.GameScene.feedPet(10, 15);
+                case FOOD_TYPES[2].index: {
+                    this.GameScene.feedPet(
+                        FOOD_TYPES[2].fulness,
+                        FOOD_TYPES[2].cost
+                    );
                     break;
                 }
             }
         }
-    }
-
-    static get FOOD_TYPES() {
-        return {
-            firstFood: 0,
-            secondFood: 1,
-            thirdFood: 2,
-        };
     }
 }

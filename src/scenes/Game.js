@@ -21,7 +21,7 @@ export default class Game extends Phaser.Scene {
             grownUp: 3,
             death: 5,
         };
-        this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
+        this.globalTimeValue = 24 * 60 * 60 * 200; // 24 часа
         this.moneyAmount = 0;
         this.fulnessClass = null;
         this.energyInstance = null;
@@ -82,7 +82,7 @@ export default class Game extends Phaser.Scene {
         this.food = this.add.image(300, 400, 'food');
         this.food.setScale(2, 2);
         this.food.setInteractive();
-        this.food.on('pointerdown', () => {
+        this.food.on('pointerup', () => {
             this.startGettingFood();
         });
 
@@ -141,7 +141,7 @@ export default class Game extends Phaser.Scene {
     updateFulness() {
         this.fulness -= 1;
         if (this.fulness <= 50) {
-            this.add.text(10, 10, 'Я голоден! Дай хавки!');
+            this.add.text(100, 250, 'Я голоден! Дай хавки!');
         }
         if (!this.fulness) {
             this.scene.start('GameOver');
