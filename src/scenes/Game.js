@@ -66,7 +66,11 @@ export default class Game extends Phaser.Scene {
             loop: true,
         });
 
-        this.moneyAmountTxt = this.add.text(150, 60, `Деньги: ${this.moneyAmount}`);
+        this.moneyAmountTxt = this.add.text(
+            150,
+            60,
+            `Деньги: ${this.moneyAmount}`
+        );
         this.noMoney = this.add.text(150, 300, '');
 
         this.pet = this.add.sprite(200, 350, 'child');
@@ -134,7 +138,7 @@ export default class Game extends Phaser.Scene {
                 }
             }
         } else {
-            console.log('---', 'хер знает как обойти эту сраную ошибку')
+            console.log('---', 'хер знает как обойти эту сраную ошибку');
         }
     }
 

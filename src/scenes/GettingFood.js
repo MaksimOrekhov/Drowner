@@ -52,10 +52,6 @@ export default class GettingFood extends Phaser.Scene {
             .setScale(4, 4);
     }
 
-    epta() {
-        console.log('xuepta');
-    }
-
     update() {
         let scenePoint = this.input.activePointer.positionToCamera(
             this.cameras.main
