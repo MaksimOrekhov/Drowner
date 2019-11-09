@@ -21,7 +21,7 @@ export default class Game extends Phaser.Scene {
             grownUp: 3,
             death: 5,
         };
-        this.globalTimeValue = 24 * 60 * 60 * 200; // 24 часа
+        this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
         this.moneyAmount = 0;
         this.fulnessClass = null;
         this.energyInstance = null;

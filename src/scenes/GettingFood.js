@@ -37,6 +37,7 @@ export default class GettingFood extends Phaser.Scene {
             [3, -1, 4, -1, 5],
         ];
         this.map = this.make.tilemap({
+            key: 'food',
             data: foodMap,
             tileWidth: 16,
             tileHeight: 16,
@@ -50,6 +51,16 @@ export default class GettingFood extends Phaser.Scene {
                 this.cameras.main.centerY - 25
             )
             .setScale(4, 4);
+        this.layer.forEachTile(this.callback, this);
+        console.log(this.layer);
+    }
+
+    callback(tile, i) {
+        if (tile && tile.index >= 0) {
+            Object.assign(tile.properties, { a: FOOD_TYPES[tile.index].name });
+            console.log(i, tile, tile.pixelX, tile.pixelY);
+            this.add.text(tile.x * 60, 320 + tile.y * 70, tile.properties.a);
+        }
     }
 
     update() {
