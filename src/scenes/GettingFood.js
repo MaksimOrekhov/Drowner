@@ -63,19 +63,27 @@ export default class GettingFood extends Phaser.Scene {
         if (tile) {
             this.scene.start('Game');
             switch (tile.index) {
-                case 0: {
+                case GettingFood.FOOD_TYPES.firstFood: {
                     this.GameScene.feedPet(3, 5);
                     break;
                 }
-                case 1: {
+                case GettingFood.FOOD_TYPES.secondFood: {
                     this.GameScene.feedPet(5, 10);
                     break;
                 }
-                case 2: {
+                case GettingFood.FOOD_TYPES.thirdFood: {
                     this.GameScene.feedPet(10, 15);
                     break;
                 }
             }
         }
+    }
+
+    static get FOOD_TYPES() {
+        return {
+            firstFood: 0,
+            secondFood: 1,
+            thirdFood: 2,
+        };
     }
 }

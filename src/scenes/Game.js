@@ -102,6 +102,7 @@ export default class Game extends Phaser.Scene {
     }
 
     feedPet(fulness, money) {
+        // @todo refactor this shit!!!
         if (this.moneyAmount - money > 0) {
             if (this.fulness <= 90) {
                 this.fulness += fulness;
