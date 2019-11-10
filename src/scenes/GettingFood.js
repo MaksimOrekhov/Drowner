@@ -55,15 +55,27 @@ export default class GettingFood extends Phaser.Scene {
         this.layer.forEachTile(this.callback, this);
         console.log(this.layer);
 
-        this.moneyAmountTxt = this.add.text(120, 20, `Деньги: ${this.GameScene.moneyAmount}`);
-        this.fulnessBarTxt = this.add.text(120, 60, `Сытость: ${this.GameScene.fulness}`);
+        this.moneyAmountTxt = this.add.text(
+            120,
+            20,
+            `Деньги: ${this.GameScene.moneyAmount}`
+        );
+        this.fulnessBarTxt = this.add.text(
+            120,
+            60,
+            `Сытость: ${this.GameScene.fulness}`
+        );
     }
 
     callback(tile, i) {
         if (tile && tile.index >= 0) {
             Object.assign(tile.properties, { a: FOOD_TYPES[tile.index].name });
-            console.log(i, tile, tile.pixelX, tile.pixelY);
-            this.add.text(tile.x * 60, 320 + tile.y * 70, tile.properties.a);
+            console.log(tile, this.cameras.main.centerX);
+            this.add.text(
+                this.cameras.main.centerX - 160 + tile.x * 60,
+                this.cameras.main.centerY + 50 + tile.y * 70,
+                tile.properties.a
+            );
         }
     }
 
