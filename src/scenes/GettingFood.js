@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { FOOD_TYPES } from './constants';
+import DialogWindow from './DialogWindow';
 
 export default class GettingFood extends Phaser.Scene {
     constructor() {
@@ -13,15 +14,19 @@ export default class GettingFood extends Phaser.Scene {
             'food-tiles',
             'assets/images/food/Food.png'
         );
+        const background = this.load.spritesheet(
+            'gettingFood_bg',
+            'assets/images/food/Background.png',
+            {
+                frameWidth: '100%',
+                frameHeight: '100%',
+            }
+        );
     }
 
     create() {
+        this.background = this.add.sprite(0, 500, 'gettingFood_bg');
         this.GameScene = this.scene.get('Game');
-        const title = this.add.text(
-            this.cameras.main.centerX - 60,
-            100,
-            'Экран кормёжки'
-        );
         const homeBtn = this.add.text(20, 20, 'Назад');
         homeBtn.setInteractive();
         homeBtn.on('pointerup', () => {
@@ -52,7 +57,7 @@ export default class GettingFood extends Phaser.Scene {
                 this.cameras.main.centerY - 25
             )
             .setScale(4, 4);
-        this.layer.forEachTile(this.callback, this);
+        this.layer.forEachTile(this.addTitle, this);
         console.log(this.layer);
 
         this.moneyAmountTxt = this.add.text(
@@ -65,17 +70,26 @@ export default class GettingFood extends Phaser.Scene {
             60,
             `Сытость: ${this.GameScene.fulness}`
         );
+        this.count = 0;
     }
 
-    callback(tile, i) {
+    addTitle(tile) {
         if (tile && tile.index >= 0) {
             Object.assign(tile.properties, { a: FOOD_TYPES[tile.index].name });
-            console.log(tile, this.cameras.main.centerX);
             this.add.text(
                 this.cameras.main.centerX - 160 + tile.x * 60,
                 this.cameras.main.centerY + 50 + tile.y * 70,
                 tile.properties.a
             );
+        }
+    }
+
+    // Добавление попапа
+    createWindow() {
+        // проверка нет ли уже такого окна
+        // из-за того что в апдейте он хуячит (создает) несколько сцен сразу
+        if (!this.scene.manager.keys['DialogWindow']) {
+            this.scene.add('DialogWindow', DialogWindow, true);
         }
     }
 
@@ -89,6 +103,7 @@ export default class GettingFood extends Phaser.Scene {
         if (tile) {
             switch (tile.index) {
                 case FOOD_TYPES[0].index: {
+                    this.createWindow();
                     this.GameScene.feedPet(
                         FOOD_TYPES[0].fulness,
                         FOOD_TYPES[0].cost

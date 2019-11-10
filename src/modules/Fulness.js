@@ -5,7 +5,7 @@ class Fulness {
 
         this.fulnessBar();
         this.scene.time.addEvent({
-            delay: this.scene.globalTimeValue / 288000, // 30 sec
+            delay: this.scene.globalTimeValue / 28800, // 30 sec
             callback: this.updateFulness,
             callbackScope: this,
             loop: true,
