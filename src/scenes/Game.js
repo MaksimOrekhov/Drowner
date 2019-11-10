@@ -5,6 +5,7 @@ import Energy from '../modules/Energy';
 import Sleep from '../modules/Sleep';
 import Hunt from '../modules/Hunt';
 import GameDayTime from '../modules/GameDayTime';
+import DialogWindow from "./DialogWindow";
 
 export default class Game extends Phaser.Scene {
     constructor() {

@@ -3,11 +3,9 @@ import Game from './scenes/Game';
 import GameOver from './scenes/GameOver';
 import StartScreen from './scenes/StartScreen';
 import GettingFood from './scenes/GettingFood';
+import DialogWindow from './scenes/DialogWindow';
 
 const config = {
-    scale: {
-        mode: Phaser.Scale.RESIZE,
-    },
     width: '100%',
     height: '100%',
     scale: {
