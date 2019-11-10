@@ -23,7 +23,6 @@ export default class Game extends Phaser.Scene {
         };
         this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
         this.moneyAmount = 0;
-        this.fulnessClass = null;
         this.energyInstance = null;
         this.sleepInstance = null;
         this.huntInstance = null;
@@ -59,31 +58,24 @@ export default class Game extends Phaser.Scene {
         this.background = this.add.sprite(-800, 0, 'forest_day');
         this.background.setOrigin(0, 0);
 
-        this.time.addEvent({
-            delay: this.globalTimeValue / 28800, // 30 sec
-            callback: this.updateFulness,
-            callbackScope: this,
-            loop: true,
-        });
-
         this.moneyAmountTxt = this.add.text(
             150,
             60,
             `Деньги: ${this.moneyAmount}`
         );
-        this.noMoney = this.add.text(150, 300, '');
+        this.noMoney = this.add.text(150, 250, '');
 
         this.pet = this.add.sprite(200, 350, 'child');
 
-        this.fulnessClass = new Fulness(this, this.fulness);
         this.energyInstance = new Energy(this);
         this.sleepInstance = new Sleep(this);
         this.huntInstance = new Hunt(this);
+        new Fulness(this, this.fulness);
         new Growth(this);
         new GameDayTime(this);
 
         // Иконка перехода на сцену кормёжки
-        this.food = this.add.image(300, 400, 'food');
+        this.food = this.add.image(300, 600, 'food');
         this.food.setScale(2, 2);
         this.food.setInteractive();
         this.food.on('pointerup', () => {
@@ -102,7 +94,8 @@ export default class Game extends Phaser.Scene {
     }
 
     startGettingFood() {
-        this.scene.start('GettingFood');
+        this.scene.setVisible(false, 'Game');
+        this.scene.launch('GettingFood');
     }
 
     feedPet(fulness, money) {
@@ -122,6 +115,7 @@ export default class Game extends Phaser.Scene {
                     loop: false,
                 });
                 this.moneyAmount -= money;
+                this.moneyAmountTxt.setText(`Деньги: ${this.moneyAmount}`);
             } else {
                 if (!this.foodMessage) {
                     this.foodMessage = this.add.text(
@@ -138,19 +132,8 @@ export default class Game extends Phaser.Scene {
                 }
             }
         } else {
-            console.log('---', 'хер знает как обойти эту сраную ошибку');
+            this.noMoney.setText('Недостаточно денег');
         }
-    }
-
-    updateFulness() {
-        this.fulness -= 1;
-        if (this.fulness <= 50) {
-            this.add.text(100, 250, 'Я голоден! Дай хавки!');
-        }
-        if (!this.fulness) {
-            this.scene.start('GameOver');
-        }
-        this.fulnessClass.updateFulnessBar(this.fulness);
     }
 
     update() {
