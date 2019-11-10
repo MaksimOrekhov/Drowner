@@ -57,7 +57,7 @@ class Growth {
 
     updateAge() {
         this.scene.petAge += 1;
-
+        this.scene.localStorageSetter.setDataToStorage();
         switch (this.scene.petAge) {
             case this.scene.growthStages.teenager:
                 this.scene.pet.setTexture('teenager'); // меняем текстуру спрайта

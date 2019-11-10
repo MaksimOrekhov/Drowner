@@ -1,11 +1,10 @@
 class Fulness {
     constructor(scene) {
         this.scene = scene;
-        this.fulness = 100;
 
         this.fulnessBar();
         this.scene.time.addEvent({
-            delay: this.scene.globalTimeValue / 288000, // 30 sec
+            delay: this.scene.globalTimeValue / 28800, // 30 sec
             callback: this.updateFulness,
             callbackScope: this,
             loop: true,
@@ -16,12 +15,14 @@ class Fulness {
         this.fulnessBarTxt = this.scene.add.text(
             20,
             20,
-            `Сытость: ${this.fulness}`
+            `Сытость: ${this.scene.fulness}`
         );
     }
 
     updateFulness() {
         this.scene.fulness -= 1;
+        this.scene.localStorageSetter.setDataToStorage();
+
         if (this.scene.fulness <= 50) {
             this.scene.add.text(100, 250, 'Я голоден! Дай хавки!');
         }
