@@ -75,7 +75,7 @@ export default class Game extends Phaser.Scene {
         new GameDayTime(this);
 
         // Иконка перехода на сцену кормёжки
-        this.food = this.add.image(300, 600, 'food');
+        this.food = this.add.image(300, 400, 'food');
         this.food.setScale(2, 2);
         this.food.setInteractive();
         this.food.on('pointerup', () => {
