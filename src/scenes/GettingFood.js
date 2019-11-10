@@ -53,6 +53,9 @@ export default class GettingFood extends Phaser.Scene {
             .setScale(4, 4);
         this.layer.forEachTile(this.callback, this);
         console.log(this.layer);
+
+        this.moneyAmountTxt = this.add.text(120, 20, `Деньги: ${this.GameScene.moneyAmount}`);
+        this.fulnessBarTxt = this.add.text(120, 60, `Сытость: ${this.GameScene.fulness}`);
     }
 
     callback(tile, i) {
@@ -71,29 +74,12 @@ export default class GettingFood extends Phaser.Scene {
         let pointerTileY = this.map.worldToTileY(scenePoint.y);
         let tile = this.layer.getTileAt(pointerTileX, pointerTileY);
         if (tile) {
-            switch (tile.index) {
-                case FOOD_TYPES[0].index: {
-                    this.GameScene.feedPet(
-                        FOOD_TYPES[0].fulness,
-                        FOOD_TYPES[0].cost
-                    );
-                    break;
-                }
-                case FOOD_TYPES[1].index: {
-                    this.GameScene.feedPet(
-                        FOOD_TYPES[1].fulness,
-                        FOOD_TYPES[1].cost
-                    );
-                    break;
-                }
-                case FOOD_TYPES[2].index: {
-                    this.GameScene.feedPet(
-                        FOOD_TYPES[2].fulness,
-                        FOOD_TYPES[2].cost
-                    );
-                    break;
-                }
-            }
+            this.GameScene.feedPet(
+                FOOD_TYPES[tile.index].fulness,
+                FOOD_TYPES[tile.index].cost
+            );
+            this.moneyAmountTxt.setText(`Деньги: ${this.GameScene.moneyAmount}`);
+            this.fulnessBarTxt.setText(`Сытость: ${this.GameScene.fulness}`);
         }
     }
 }
