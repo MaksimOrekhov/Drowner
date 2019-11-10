@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import LocalStorageSetter from '../modules/LocalStorageSetter';
 import Fulness from '../modules/Fulness';
 import Growth from '../modules/Growth';
 import Energy from '../modules/Energy';
@@ -29,7 +30,9 @@ export default class Game extends Phaser.Scene {
         this.huntInstance = null;
     }
 
-    init() {}
+    init() {
+        this.getParametersFromLocalStorage();
+    }
 
     preload() {
         this.load.spritesheet('forest_day', 'assets/images/ForestDay.png', {
@@ -68,6 +71,7 @@ export default class Game extends Phaser.Scene {
 
         this.pet = this.add.sprite(200, 350, 'child');
 
+        this.localStorageSetter = new LocalStorageSetter(this);
         this.energyInstance = new Energy(this);
         this.sleepInstance = new Sleep(this);
         this.huntInstance = new Hunt(this);
@@ -141,6 +145,16 @@ export default class Game extends Phaser.Scene {
         // Очистка сообщения о сытости
         if (this.foodMessage) {
             this.foodMessage = undefined;
+        }
+    }
+
+    getParametersFromLocalStorage() {
+        let parameters = JSON.parse(localStorage.getItem('parameters'));
+        if (parameters) {
+            this.fulness = parameters.fulness;
+            this.energy = parameters.energy;
+            this.moneyAmount = parameters.moneyAmount;
+            this.petAge = parameters.petAge;
         }
     }
 }

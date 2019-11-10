@@ -101,6 +101,11 @@ export default class GettingFood extends Phaser.Scene {
         let pointerTileY = this.map.worldToTileY(scenePoint.y);
         let tile = this.layer.getTileAt(pointerTileX, pointerTileY);
         if (tile) {
+            // вариант рефакторинга
+            // this.GameScene.feedPet(
+            //     FOOD_TYPES[tile.index].fulness,
+            //     FOOD_TYPES[tile.index].cost
+            // );
             switch (tile.index) {
                 case FOOD_TYPES[0].index: {
                     this.createWindow();

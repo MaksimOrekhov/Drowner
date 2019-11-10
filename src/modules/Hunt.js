@@ -20,6 +20,7 @@ class Hunt {
 
     increaseMoneyValue() {
         this.scene.moneyAmount += Phaser.Math.Between(this.minAmount, this.maxAmount) * this.scene.strength;
+        this.scene.localStorageSetter.setDataToStorage();
         this.updateMoneyAmount();
     }
 
