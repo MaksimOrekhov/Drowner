@@ -28,6 +28,8 @@ export default class Game extends Phaser.Scene {
         this.energyInstance = null;
         this.sleepInstance = null;
         this.huntInstance = null;
+        this.goHuntButton = null;
+        this.goSleepButton = null;
     }
 
     init() {
@@ -91,8 +93,8 @@ export default class Game extends Phaser.Scene {
         this.goHuntButton = this.add.text(20, 520, 'Пойти на охоту');
         this.goHuntButton.setInteractive();
         this.goHuntButton.on('pointerdown', () => {
-            this.energyInstance.decreaseEnergyValue();
-            this.huntInstance.goHunting();
+            this.scene.setVisible(false, 'Game');
+            this.scene.launch('HuntMap');
         });
 
         this.pet.play('child_anim');

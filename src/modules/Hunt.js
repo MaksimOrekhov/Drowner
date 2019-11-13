@@ -10,16 +10,13 @@ class Hunt {
     goHunting() {
         this.scene.goHuntButton.setText('');
         this.scene.pet.setActive(false).setVisible(false);
-        this.scene.time.addEvent({
-            delay: 2000,
-            callback: this.increaseMoneyValue,
-            callbackScope: this,
-            loop: false,
-        });
+        setTimeout(() => {
+            this.increaseMoneyValue();
+        }, 2000);
     }
 
     increaseMoneyValue() {
-        this.scene.moneyAmount += Phaser.Math.Between(this.minAmount, this.maxAmount) * this.scene.strength;
+        this.scene.moneyAmount += Phaser.Math.Between(this.minAmount, this.maxAmount) + this.scene.strength;
         this.scene.localStorageSetter.setDataToStorage();
         this.updateMoneyAmount();
     }
