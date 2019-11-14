@@ -89,13 +89,26 @@ export default class Game extends Phaser.Scene {
             this.startGettingFood();
         });
 
-        // Кнопка выхода на охоту
-        this.goHuntButton = this.add.text(20, 520, 'Пойти на охоту');
+        this.goHuntButton = this.add.text(20, 520, '');
+        this.goSleepButton = this.add.text(20, 520, '');
+
         this.goHuntButton.setInteractive();
+        this.goSleepButton.setInteractive();
+
+        this.goSleepButton.on('pointerdown', () => {
+            this.sleepInstance.increaseEnergyValue();
+        });
+
         this.goHuntButton.on('pointerdown', () => {
             this.scene.setVisible(false, 'Game');
             this.scene.launch('HuntMap');
         });
+
+        if (this.energy === 0) {
+            this.goSleepButton.setText('Пойти спать');
+        } else {
+            this.goHuntButton.setText('Пойти на охоту');
+        }
 
         this.pet.play('child_anim');
     }

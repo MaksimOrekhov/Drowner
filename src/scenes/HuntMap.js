@@ -21,8 +21,8 @@ export default class HuntMap extends Phaser.Scene {
         this.goBackButton = this.add.text(20, 20, 'Назад');
 
         this.goBackButton.setInteractive().on('pointerdown', () => {
-            this.scene.setVisible(false, 'HuntMap');
-            this.scene.launch('Game');
+            this.scene.stop('HuntMap');
+            this.scene.setVisible(true, 'Game');
         });
 
         this.firstPlace = this.add.circle(22, 160, 12, 0xff0000);
@@ -103,7 +103,7 @@ export default class HuntMap extends Phaser.Scene {
             this.parent.GameScene.energyInstance.decreaseEnergyValue();
             this.parent.GameScene.huntInstance.goHunting();
 
-            this.scene.setVisible(false, 'HuntMap');
+            this.scene.stop('HuntMap');
             this.scene.setVisible(true, 'Game');
             this.scene.remove('DialogWindow');
         });
