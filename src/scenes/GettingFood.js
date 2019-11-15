@@ -30,9 +30,7 @@ export default class GettingFood extends Phaser.Scene {
         const homeBtn = this.add.text(20, 20, 'Назад');
         homeBtn.setInteractive();
         homeBtn.on('pointerup', () => {
-            this.scene.setVisible(true, 'Game');
-            this.scene.remove('DialogWindow');
-            this.scene.stop('GettingFood');
+            this.scene.switch('Game');
         });
 
         /**

@@ -118,8 +118,8 @@ export default class Game extends Phaser.Scene {
     }
 
     startGettingFood() {
-        this.scene.setVisible(false, 'Game');
-        this.scene.launch('GettingFood');
+        this.scene.switch('GettingFood');
+        this.scene.resume('Game');
     }
 
     feedPet(fulness, money) {
