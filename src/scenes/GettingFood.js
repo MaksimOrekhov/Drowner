@@ -31,7 +31,8 @@ export default class GettingFood extends Phaser.Scene {
         homeBtn.setInteractive();
         homeBtn.on('pointerup', () => {
             this.scene.setVisible(true, 'Game');
-            this.scene.setVisible(false, 'GettingFood');
+            this.scene.remove('DialogWindow');
+            this.scene.stop('GettingFood');
         });
 
         /**
@@ -58,7 +59,6 @@ export default class GettingFood extends Phaser.Scene {
             )
             .setScale(4, 4);
         this.layer.forEachTile(this.addTitle, this);
-        console.log(this.layer);
 
         this.moneyAmountTxt = this.add.text(
             120,
@@ -85,11 +85,21 @@ export default class GettingFood extends Phaser.Scene {
     }
 
     // Добавление попапа
-    createWindow() {
-        // проверка нет ли уже такого окна
-        // из-за того что в апдейте он хуячит (создает) несколько сцен сразу
+    createDialogWindow(params) {
         if (!this.scene.manager.keys['DialogWindow']) {
-            this.scene.add('DialogWindow', DialogWindow, true);
+            this.dialogWindow = new DialogWindow({
+                parent: this,
+                width: this.cameras.main.worldView.width,
+                height: this.cameras.main.worldView.height / 2,
+                bgColor: '#000',
+                alpha: 0.8,
+                render: this.render,
+                renderParams: params,
+                viewportX: 0,
+                viewportY: this.cameras.main.worldView.height / 6,
+            });
+
+            this.scene.add('DialogWindow', this.dialogWindow, true);
         }
     }
 
@@ -101,37 +111,41 @@ export default class GettingFood extends Phaser.Scene {
         let pointerTileY = this.map.worldToTileY(scenePoint.y);
         let tile = this.layer.getTileAt(pointerTileX, pointerTileY);
         if (tile) {
-            // вариант рефакторинга
-            // this.GameScene.feedPet(
-            //     FOOD_TYPES[tile.index].fulness,
-            //     FOOD_TYPES[tile.index].cost
-            // );
-            switch (tile.index) {
-                case FOOD_TYPES[0].index: {
-                    this.createWindow();
-                    this.GameScene.feedPet(
-                        FOOD_TYPES[0].fulness,
-                        FOOD_TYPES[0].cost
-                    );
-                    break;
-                }
-                case FOOD_TYPES[1].index: {
-                    this.GameScene.feedPet(
-                        FOOD_TYPES[1].fulness,
-                        FOOD_TYPES[1].cost
-                    );
-                    break;
-                }
-                case FOOD_TYPES[2].index: {
-                    this.GameScene.feedPet(
-                        FOOD_TYPES[2].fulness,
-                        FOOD_TYPES[2].cost
-                    );
-                    break;
-                }
-            }
+            this.createDialogWindow({
+                tile: tile,
+            });
         }
         this.moneyAmountTxt.setText(`Деньги: ${this.GameScene.moneyAmount}`);
         this.fulnessBarTxt.setText(`Сытость: ${this.GameScene.fulness}`);
+    }
+
+    render(params) {
+        const { tile } = params;
+        this.add.text(60, 80, `Стоимость еды: ${FOOD_TYPES[tile.index].cost}`, {
+            font: 'bold 20px Arial',
+        });
+        this.add.text(60, 120, `Восстановление сытости: ${FOOD_TYPES[tile.index].fulness}`,  {
+                font: 'bold 20px Arial',
+            }
+        );
+        this.feedPetTxt = this.add.text(40, 200, 'Применить', {
+            font: 'bold 20px Arial',
+        });
+        this.cancelTxt = this.add.text(250, 200, 'Отмена', {
+            font: 'bold 20px Arial',
+        });
+
+        this.feedPetTxt.setInteractive().on('pointerup', () => {
+            this.scene.remove('DialogWindow');
+
+            this.parent.GameScene.feedPet(
+                FOOD_TYPES[tile.index].fulness,
+                FOOD_TYPES[tile.index].cost
+            );
+        });
+
+        this.cancelTxt.setInteractive().on('pointerup', () => {
+            this.scene.remove('DialogWindow');
+        });
     }
 }

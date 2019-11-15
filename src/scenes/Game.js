@@ -89,6 +89,10 @@ export default class Game extends Phaser.Scene {
             this.startGettingFood();
         });
 
+        this.huntFailedButton = this.add.text(120, 420, '', {
+            wordWrap: { width: 250, useAdvancedWrap: true },
+        });
+
         this.goHuntButton = this.add.text(20, 520, '');
         this.goSleepButton = this.add.text(20, 520, '');
 

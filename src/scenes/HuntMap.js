@@ -68,17 +68,16 @@ export default class HuntMap extends Phaser.Scene {
 
     // Добавление попапа
     createDialogWindow(params) {
-        this.dialogWindow = new DialogWindow({
-            parent: this,
-            width: this.cameras.main.worldView.width,
-            height: this.cameras.main.worldView.height,
-            bgColor: '#000',
-            alpha: 0.8,
-            render: this.render,
-            renderParams: params,
-        });
-
         if (!this.scene.manager.keys['DialogWindow']) {
+            this.dialogWindow = new DialogWindow({
+                parent: this,
+                width: this.cameras.main.worldView.width,
+                height: this.cameras.main.worldView.height,
+                bgColor: '#000',
+                alpha: 0.8,
+                render: this.render,
+                renderParams: params,
+            });
             this.scene.add('DialogWindow', this.dialogWindow, true);
         }
     }
