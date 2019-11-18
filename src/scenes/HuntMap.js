@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import DialogWindow from './DialogWindow';
+import { ENEMY_STRENGTH } from './constants';
 
 export default class HuntMap extends Phaser.Scene {
     constructor() {
@@ -33,33 +34,32 @@ export default class HuntMap extends Phaser.Scene {
 
         this.firstPlace.setInteractive().on('pointerdown', () => {
             this.createDialogWindow({
-                placeNum: 1,
-                monsterStrength: 1,
-                scene: this,
+                placeNum: ENEMY_STRENGTH[0].id,
+                monsterStrength: ENEMY_STRENGTH[0].strength,
             });
         });
         this.secondPlace.setInteractive().on('pointerdown', () => {
             this.createDialogWindow({
-                placeNum: 2,
-                monsterStrength: 2,
+                placeNum: ENEMY_STRENGTH[1].id,
+                monsterStrength: ENEMY_STRENGTH[1].strength,
             });
         });
         this.thirdPlace.setInteractive().on('pointerdown', () => {
             this.createDialogWindow({
-                placeNum: 3,
-                monsterStrength: 3,
+                placeNum: ENEMY_STRENGTH[2].id,
+                monsterStrength: ENEMY_STRENGTH[2].strength,
             });
         });
         this.fourthPlace.setInteractive().on('pointerdown', () => {
             this.createDialogWindow({
-                placeNum: 4,
-                monsterStrength: 4,
+                placeNum: ENEMY_STRENGTH[3].id,
+                monsterStrength: ENEMY_STRENGTH[3].strength,
             });
         });
         this.fifthPlace.setInteractive().on('pointerdown', () => {
             this.createDialogWindow({
-                placeNum: 5,
-                monsterStrength: 5,
+                placeNum: ENEMY_STRENGTH[4].id,
+                monsterStrength: ENEMY_STRENGTH[4].strength,
             });
         });
     }
@@ -100,7 +100,7 @@ export default class HuntMap extends Phaser.Scene {
 
         this.goHuntTxt.setInteractive().on('pointerup', () => {
             this.parent.GameScene.energyInstance.decreaseEnergyValue();
-            this.parent.GameScene.huntInstance.goHunting();
+            this.parent.GameScene.huntInstance.goHunting(monsterStrength);
 
             this.scene.stop('HuntMap');
             this.scene.setVisible(true, 'Game');

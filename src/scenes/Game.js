@@ -6,7 +6,6 @@ import Energy from '../modules/Energy';
 import Sleep from '../modules/Sleep';
 import Hunt from '../modules/Hunt';
 import GameDayTime from '../modules/GameDayTime';
-import DialogWindow from "./DialogWindow";
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -89,7 +88,7 @@ export default class Game extends Phaser.Scene {
             this.startGettingFood();
         });
 
-        this.huntFailedButton = this.add.text(120, 420, '', {
+        this.huntFailedText = this.add.text(120, 420, '', {
             wordWrap: { width: 250, useAdvancedWrap: true },
         });
 
@@ -127,6 +126,7 @@ export default class Game extends Phaser.Scene {
         if (this.moneyAmount - money >= 0) {
             if (this.fulness <= 90) {
                 this.fulness += fulness;
+                this.localStorageSetter.setDataToStorage();
                 this.foodMessage = this.add.text(
                     100,
                     100,

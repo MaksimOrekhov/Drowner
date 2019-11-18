@@ -36,3 +36,26 @@ export const FOOD_TYPES = [
         name: 'шестая еда'
     },
 ];
+
+export const ENEMY_STRENGTH = [
+    {
+        id: 1,
+        strength: 1,
+    },
+    {
+        id: 2,
+        strength: 2,
+    },
+    {
+        id: 3,
+        strength: 3,
+    },
+    {
+        id: 4,
+        strength: 4,
+    },
+    {
+        id: 5,
+        strength: 5,
+    },
+];
