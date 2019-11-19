@@ -62,7 +62,7 @@ class Growth {
     calculatePetAge() {
         let dateNow = new Date().getTime();
         const petBirthDate = this.storageBirthDate.petBirthdate;
-        let petAge = Math.round((dateNow - petBirthDate) / 86400000);
+        let petAge = Math.floor((dateNow - petBirthDate) / 86400000);
         this.updateAge(petAge);
     }
 
