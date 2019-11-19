@@ -1,8 +1,6 @@
 class Growth {
     constructor(scene) {
         this.scene = scene;
-        this.birthDate = null;
-        this.storageBirthDate = JSON.parse(localStorage.getItem('birthDate'));
 
         this.setPetBirthdate();
         this.addPetAnimations();
@@ -12,7 +10,8 @@ class Growth {
 
     setPetBirthdate() {
         const birthDate = new Date().getTime();
-        if (!this.storageBirthDate) {
+        const petBirthDate = JSON.parse(localStorage.getItem('birthDate'));
+        if (!petBirthDate) {
             localStorage.setItem(
                 'birthDate',
                 JSON.stringify({ petBirthdate: birthDate })
@@ -61,7 +60,7 @@ class Growth {
 
     calculatePetAge() {
         let dateNow = new Date().getTime();
-        const petBirthDate = this.storageBirthDate.petBirthdate;
+        const petBirthDate = JSON.parse(localStorage.getItem('birthDate')).petBirthdate;
         let petAge = Math.floor((dateNow - petBirthDate) / 86400000);
         this.updateAge(petAge);
     }
