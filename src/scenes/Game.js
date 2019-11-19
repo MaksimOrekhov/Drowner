@@ -6,6 +6,8 @@ import Energy from '../modules/Energy';
 import Sleep from '../modules/Sleep';
 import Hunt from '../modules/Hunt';
 import GameDayTime from '../modules/GameDayTime';
+import RandomMessage from '../modules/RandomMessage';
+import { TIMER_CONFIG } from "./constants";
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -57,6 +59,7 @@ export default class Game extends Phaser.Scene {
             frameHeight: 175,
         });
         this.load.image('food', 'assets/images/food/Brownie.png');
+        this.load.image('message', 'assets/images/cloud_message.png')
     }
 
     create() {
@@ -76,9 +79,17 @@ export default class Game extends Phaser.Scene {
         this.energyInstance = new Energy(this);
         this.sleepInstance = new Sleep(this);
         this.huntInstance = new Hunt(this);
+        this.randomMessageInstance = new RandomMessage(this);
         new Fulness(this, this.fulness);
         new Growth(this);
         new GameDayTime(this);
+
+        this.time.addEvent({
+            delay: 2000,
+            callback: this.showRandomMessage,
+            callbackScope: this,
+            loop: true,
+        });
 
         // Иконка перехода на сцену кормёжки
         this.food = this.add.image(300, 400, 'food');
@@ -91,9 +102,8 @@ export default class Game extends Phaser.Scene {
         this.huntFailedText = this.add.text(120, 420, '', {
             wordWrap: { width: 250, useAdvancedWrap: true },
         });
-
-        this.goHuntButton = this.add.text(20, 520, '');
-        this.goSleepButton = this.add.text(20, 520, '');
+        this.goHuntButton = this.add.text(20, this.cameras.main.height - 35, '');
+        this.goSleepButton = this.add.text(20, this.cameras.main.height - 35, '');
 
         this.goHuntButton.setInteractive();
         this.goSleepButton.setInteractive();
@@ -116,6 +126,35 @@ export default class Game extends Phaser.Scene {
         this.pet.play('child_anim');
     }
 
+    showRandomMessage() {
+        this.messageImg = this.add.image(245, 277, 'message');
+        this.messageImg.setScale(0.3, 0.35);
+        this.messageText = this.add.text(
+            150,
+            225,
+            this.randomMessageInstance.getMessage(),
+            { color: '#000', wordWrap: { width: this.messageImg.width * 0.22, useAdvancedWrap: true } }
+        );
+
+        // если сообщение в три строки увеличиваем подложку и сдвигаем её
+        if (this.messageText.height > 45) {
+            this.messageImg.setPosition(245, 300);
+            this.messageImg.setScale(0.3, 0.5);
+        }
+
+        this.destroyMessage(TIMER_CONFIG.randomMessage, this.messageText);
+        this.destroyMessage(TIMER_CONFIG.randomMessage, this.messageImg);
+    }
+
+    destroyMessage(delay, obj) {
+        this.time.addEvent({
+            delay: delay,
+            callback: obj.destroy,
+            callbackScope: obj,
+            loop: false,
+        });
+    }
+
     startGettingFood() {
         this.scene.switch('GettingFood');
         this.scene.resume('Game');
@@ -132,12 +171,7 @@ export default class Game extends Phaser.Scene {
                     100,
                     'Спасибо бро, этот бургер был не лишним!'
                 );
-                this.time.addEvent({
-                    delay: 1000,
-                    callback: this.foodMessage.destroy,
-                    callbackScope: this.foodMessage,
-                    loop: false,
-                });
+                this.destroyMessage(2000, this.foodMessage);
                 this.moneyAmount -= money;
                 this.moneyAmountTxt.setText(`Деньги: ${this.moneyAmount}`);
             } else {
@@ -147,12 +181,7 @@ export default class Game extends Phaser.Scene {
                         100,
                         'Слишком много хавки! Я сыт!'
                     );
-                    this.time.addEvent({
-                        delay: 1000,
-                        callback: this.foodMessage.destroy,
-                        callbackScope: this.foodMessage,
-                        loop: false,
-                    });
+                    this.destroyMessage(2000, this.foodMessage)
                 }
             }
         } else {
