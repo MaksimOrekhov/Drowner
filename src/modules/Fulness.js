@@ -4,7 +4,7 @@ class Fulness {
 
         this.fulnessBar();
         this.scene.time.addEvent({
-            delay: this.scene.globalTimeValue / 28800, // 30 sec
+            delay: this.scene.globalTimeValue / 2880, // 30 sec
             callback: this.updateFulness,
             callbackScope: this,
             loop: true,
@@ -22,9 +22,11 @@ class Fulness {
     updateFulness() {
         this.scene.fulness -= 1;
         this.scene.localStorageSetter.setDataToStorage();
-
+        this.hungryTxt = this.scene.add.text(100, 250, '');
         if (this.scene.fulness <= 50) {
-            this.scene.add.text(100, 250, 'Я голоден! Дай хавки!');
+            this.hungryTxt.setText('Я голоден! Дай хавки!');
+        } else {
+            this.hungryTxt.setText('');
         }
         if (!this.scene.fulness) {
             this.scene.scene.start('GameOver');

@@ -3,6 +3,7 @@ import Game from './scenes/Game';
 import GameOver from './scenes/GameOver';
 import StartScreen from './scenes/StartScreen';
 import GettingFood from './scenes/GettingFood';
+import HuntMap from './scenes/HuntMap';
 import DialogWindow from './scenes/DialogWindow';
 
 const config = {
@@ -15,7 +16,7 @@ const config = {
     },
     localStorageName: 'phaseres6webpack',
     webfonts: ['Bangers'],
-    scene: [StartScreen, Game, GameOver, GettingFood],
+    scene: [StartScreen, Game, GameOver, GettingFood, HuntMap],
 };
 
 new Phaser.Game(config);

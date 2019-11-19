@@ -1,10 +1,23 @@
 class Growth {
     constructor(scene) {
         this.scene = scene;
+        this.birthDate = null;
+        this.storageBirthDate = JSON.parse(localStorage.getItem('birthDate'));
 
+        this.setPetBirthdate();
         this.addPetAnimations();
         this.createAgeText();
-        this.createGrowthTimer();
+        this.calculatePetAge();
+    }
+
+    setPetBirthdate() {
+        const birthDate = new Date().getTime();
+        if (!this.storageBirthDate) {
+            localStorage.setItem(
+                'birthDate',
+                JSON.stringify({ petBirthdate: birthDate })
+            );
+        }
     }
 
     addPetAnimations() {
@@ -46,17 +59,15 @@ class Growth {
         );
     }
 
-    createGrowthTimer() {
-        this.scene.time.addEvent({
-            delay: this.scene.globalTimeValue,
-            callback: this.updateAge,
-            callbackScope: this,
-            loop: true,
-        });
+    calculatePetAge() {
+        let dateNow = new Date().getTime();
+        const petBirthDate = this.storageBirthDate.petBirthdate;
+        let petAge = Math.floor((dateNow - petBirthDate) / 86400000);
+        this.updateAge(petAge);
     }
 
-    updateAge() {
-        this.scene.petAge += 1;
+    updateAge(petAge) {
+        this.scene.petAge = petAge;
         this.scene.localStorageSetter.setDataToStorage();
         switch (this.scene.petAge) {
             case this.scene.growthStages.teenager:

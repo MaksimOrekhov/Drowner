@@ -15,6 +15,7 @@ class Sleep {
     updateEnergyValue() {
         if (this.scene.energy !== 100) {
             this.scene.goSleepButton.setText('');
+            this.scene.huntFailedText.setText('');
             this.scene.energy += 10;
             this.scene.localStorageSetter.setDataToStorage();
             this.updateEnergyBar();

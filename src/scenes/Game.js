@@ -6,7 +6,6 @@ import Energy from '../modules/Energy';
 import Sleep from '../modules/Sleep';
 import Hunt from '../modules/Hunt';
 import GameDayTime from '../modules/GameDayTime';
-import DialogWindow from "./DialogWindow";
 
 export default class Game extends Phaser.Scene {
     constructor() {
@@ -28,6 +27,8 @@ export default class Game extends Phaser.Scene {
         this.energyInstance = null;
         this.sleepInstance = null;
         this.huntInstance = null;
+        this.goHuntButton = null;
+        this.goSleepButton = null;
     }
 
     init() {
@@ -87,20 +88,37 @@ export default class Game extends Phaser.Scene {
             this.startGettingFood();
         });
 
-        // Кнопка выхода на охоту
-        this.goHuntButton = this.add.text(20, 520, 'Пойти на охоту');
-        this.goHuntButton.setInteractive();
-        this.goHuntButton.on('pointerdown', () => {
-            this.energyInstance.decreaseEnergyValue();
-            this.huntInstance.goHunting();
+        this.huntFailedText = this.add.text(120, 420, '', {
+            wordWrap: { width: 250, useAdvancedWrap: true },
         });
+
+        this.goHuntButton = this.add.text(20, 520, '');
+        this.goSleepButton = this.add.text(20, 520, '');
+
+        this.goHuntButton.setInteractive();
+        this.goSleepButton.setInteractive();
+
+        this.goSleepButton.on('pointerdown', () => {
+            this.sleepInstance.increaseEnergyValue();
+        });
+
+        this.goHuntButton.on('pointerdown', () => {
+            this.scene.setVisible(false, 'Game');
+            this.scene.launch('HuntMap');
+        });
+
+        if (this.energy === 0) {
+            this.goSleepButton.setText('Пойти спать');
+        } else {
+            this.goHuntButton.setText('Пойти на охоту');
+        }
 
         this.pet.play('child_anim');
     }
 
     startGettingFood() {
-        this.scene.setVisible(false, 'Game');
-        this.scene.launch('GettingFood');
+        this.scene.switch('GettingFood');
+        this.scene.resume('Game');
     }
 
     feedPet(fulness, money) {
@@ -108,6 +126,7 @@ export default class Game extends Phaser.Scene {
         if (this.moneyAmount - money >= 0) {
             if (this.fulness <= 90) {
                 this.fulness += fulness;
+                this.localStorageSetter.setDataToStorage();
                 this.foodMessage = this.add.text(
                     100,
                     100,
