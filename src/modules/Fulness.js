@@ -23,11 +23,8 @@ class Fulness {
         this.scene.fulness -= 1;
         this.scene.localStorageSetter.setDataToStorage();
         this.hungryTxt = this.scene.add.text(100, 250, '');
-        if (this.scene.fulness <= 50) {
-            this.hungryTxt.setText('Я голоден! Дай хавки!');
-        } else {
-            this.hungryTxt.setText('');
-        }
+
+        this.hungryTxt.setText('');
         if (!this.scene.fulness) {
             this.scene.scene.start('GameOver');
         }
