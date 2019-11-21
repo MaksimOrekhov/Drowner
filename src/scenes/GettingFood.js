@@ -108,10 +108,9 @@ export default class GettingFood extends Phaser.Scene {
         let pointerTileX = this.map.worldToTileX(scenePoint.x);
         let pointerTileY = this.map.worldToTileY(scenePoint.y);
         let tile = this.layer.getTileAt(pointerTileX, pointerTileY);
-        if (tile) {
-            this.createDialogWindow({
-                tile: tile,
-            });
+
+        if (tile && this.input.activePointer.event.type === 'touchstart') {
+            this.createDialogWindow({ tile });
         }
         this.moneyAmountTxt.setText(`Деньги: ${this.GameScene.moneyAmount}`);
         this.fulnessBarTxt.setText(`Сытость: ${this.GameScene.fulness}`);
