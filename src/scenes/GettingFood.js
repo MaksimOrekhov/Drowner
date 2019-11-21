@@ -29,7 +29,7 @@ export default class GettingFood extends Phaser.Scene {
         this.GameScene = this.scene.get('Game');
         const homeBtn = this.add.text(20, 20, 'Назад');
         homeBtn.setInteractive();
-        homeBtn.on('pointerup', () => {
+        homeBtn.on('pointerdown', () => {
             this.scene.switch('Game');
         });
 
@@ -133,7 +133,7 @@ export default class GettingFood extends Phaser.Scene {
             font: 'bold 20px Arial',
         });
 
-        this.feedPetTxt.setInteractive().on('pointerup', () => {
+        this.feedPetTxt.setInteractive().on('pointerdown', () => {
             this.scene.remove('DialogWindow');
 
             this.parent.GameScene.feedPet(
@@ -142,7 +142,7 @@ export default class GettingFood extends Phaser.Scene {
             );
         });
 
-        this.cancelTxt.setInteractive().on('pointerup', () => {
+        this.cancelTxt.setInteractive().on('pointerdown', () => {
             this.scene.remove('DialogWindow');
         });
     }

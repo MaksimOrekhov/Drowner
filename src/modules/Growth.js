@@ -3,7 +3,6 @@ class Growth {
         this.scene = scene;
 
         this.setPetBirthdate();
-        this.addPetAnimations();
         this.createAgeText();
         this.calculatePetAge();
     }
@@ -17,37 +16,6 @@ class Growth {
                 JSON.stringify({ petBirthdate: birthDate })
             );
         }
-    }
-
-    addPetAnimations() {
-        let _this = this.scene;
-
-        _this.anims.create({
-            key: 'child_anim',
-            frames: _this.anims.generateFrameNumbers('child', {
-                frames: [0, 1, 2, 1],
-            }),
-            frameRate: 5,
-            repeat: -1,
-        });
-
-        _this.anims.create({
-            key: 'teenager_anim',
-            frames: _this.anims.generateFrameNumbers('teenager', {
-                frames: [0, 1, 2, 1],
-            }),
-            frameRate: 5,
-            repeat: -1,
-        });
-
-        _this.anims.create({
-            key: 'grownUp_anim',
-            frames: _this.anims.generateFrameNumbers('grownUp', {
-                frames: [0, 1, 2, 1],
-            }),
-            frameRate: 5,
-            repeat: -1,
-        });
     }
 
     createAgeText() {
