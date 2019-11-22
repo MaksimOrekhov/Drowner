@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import BackgroundLogicScene from './scenes/BackgroundLogicScene';
 import Game from './scenes/Game';
 import GameOver from './scenes/GameOver';
 import StartScreen from './scenes/StartScreen';
@@ -16,7 +17,15 @@ const config = {
     },
     localStorageName: 'phaseres6webpack',
     webfonts: ['Bangers'],
-    scene: [StartScreen, Game, GameOver, GettingFood, HuntMap, PetShop],
+    scene: [
+        BackgroundLogicScene,
+        StartScreen,
+        Game,
+        GameOver,
+        GettingFood,
+        HuntMap,
+        PetShop,
+    ],
 };
 
 new Phaser.Game(config);
