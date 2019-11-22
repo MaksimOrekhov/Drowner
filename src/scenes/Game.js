@@ -84,7 +84,7 @@ export default class Game extends Phaser.Scene {
         new GameDayTime(this);
 
         this.time.addEvent({
-            delay: 20000,
+            delay: TIMER_CONFIG.randomMessage,
             callback: this.showRandomMessage,
             callbackScope: this,
             loop: true,
@@ -147,8 +147,8 @@ export default class Game extends Phaser.Scene {
             this.messageImg.setScale(0.3, 0.5);
         }
 
-        this.destroyMessage(TIMER_CONFIG.randomMessage, this.messageText);
-        this.destroyMessage(TIMER_CONFIG.randomMessage, this.messageImg);
+        this.destroyMessage(TIMER_CONFIG.randomMessage * 0.5, this.messageText);
+        this.destroyMessage(TIMER_CONFIG.randomMessage * 0.5, this.messageImg);
     }
 
     destroyMessage(delay, obj) {

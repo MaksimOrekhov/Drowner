@@ -70,7 +70,7 @@ export const PET_MESSAGES = [
 ];
 
 export const TIMER_CONFIG = {
-    randomMessage: 2000,
+    randomMessage: 10000,
 };
 
 export const PETS_PARAMETERS = [
