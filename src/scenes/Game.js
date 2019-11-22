@@ -7,12 +7,15 @@ import Sleep from '../modules/Sleep';
 import Hunt from '../modules/Hunt';
 import GameDayTime from '../modules/GameDayTime';
 import RandomMessage from '../modules/RandomMessage';
-import { TIMER_CONFIG } from "./constants";
+import { TIMER_CONFIG } from './constants';
 
 export default class Game extends Phaser.Scene {
     constructor() {
         super('Game');
         this.pet = null;
+        this.petSpriteName = null;
+        this.petSpritePath = null;
+        this.petID = null;
         this.background = null;
         this.petAge = 0;
         this.fulness = 100;
@@ -33,7 +36,11 @@ export default class Game extends Phaser.Scene {
         this.goSleepButton = null;
     }
 
-    init() {
+    init(data) {
+        const { id, spriteName, spritePath } = data;
+        this.petID = id;
+        this.petSpriteName = spriteName;
+        this.petSpritePath = spritePath;
         this.getParametersFromLocalStorage();
     }
 
@@ -46,20 +53,12 @@ export default class Game extends Phaser.Scene {
             frameWidth: '100%',
             frameHeight: '100%',
         });
-        this.load.spritesheet('child', 'assets/images/bird.png', {
-            frameWidth: 183,
-            frameHeight: 175,
-        });
-        this.load.spritesheet('teenager', 'assets/images/bird2.png', {
-            frameWidth: 183,
-            frameHeight: 175,
-        });
-        this.load.spritesheet('grownUp', 'assets/images/bird3.png', {
+        this.load.spritesheet(this.petSpriteName, this.petSpritePath, {
             frameWidth: 183,
             frameHeight: 175,
         });
         this.load.image('food', 'assets/images/food/Brownie.png');
-        this.load.image('message', 'assets/images/cloud_message.png')
+        this.load.image('message', 'assets/images/cloud_message.png');
     }
 
     create() {
@@ -73,7 +72,7 @@ export default class Game extends Phaser.Scene {
         );
         this.noMoney = this.add.text(150, 250, '');
 
-        this.pet = this.add.sprite(200, 350, 'child');
+        this.pet = this.add.sprite(200, 350, this.petSpriteName);
 
         this.localStorageSetter = new LocalStorageSetter(this);
         this.energyInstance = new Energy(this);
@@ -85,7 +84,7 @@ export default class Game extends Phaser.Scene {
         new GameDayTime(this);
 
         this.time.addEvent({
-            delay: 2000,
+            delay: 20000,
             callback: this.showRandomMessage,
             callbackScope: this,
             loop: true,
@@ -104,9 +103,11 @@ export default class Game extends Phaser.Scene {
         });
         this.goHuntButton = this.add.text(20, this.cameras.main.height - 35, '');
         this.goSleepButton = this.add.text(20, this.cameras.main.height - 35, '');
+        this.petShopButton = this.add.text(260, this.cameras.main.height - 35, 'Магазин питомцев');
 
         this.goHuntButton.setInteractive();
         this.goSleepButton.setInteractive();
+        this.petShopButton.setInteractive();
 
         this.goSleepButton.on('pointerdown', () => {
             this.sleepInstance.increaseEnergyValue();
@@ -123,7 +124,11 @@ export default class Game extends Phaser.Scene {
             this.goHuntButton.setText('Пойти на охоту');
         }
 
-        this.pet.play('child_anim');
+        this.petShopButton.on('pointerdown', () => {
+            this.scene.switch('PetShop');
+        });
+
+        this.pet.play(this.petSpriteName);
     }
 
     showRandomMessage() {
