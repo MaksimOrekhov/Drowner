@@ -79,9 +79,13 @@ export default class Game extends Phaser.Scene {
         this.sleepInstance = new Sleep(this);
         this.huntInstance = new Hunt(this);
         this.randomMessageInstance = new RandomMessage(this);
-        new Fulness(this, this.fulness);
+        this.fulnessInstance = new Fulness(this);
         new Growth(this);
         new GameDayTime(this);
+        this.fulnessInstance.startCalcFulness();
+        if (localStorage.getItem('gameLeftTime') !== '0') {
+            this.fulnessInstance.calcFulnessAfterExit();
+        }
 
         this.time.addEvent({
             delay: TIMER_CONFIG.randomMessage,
@@ -199,6 +203,10 @@ export default class Game extends Phaser.Scene {
         if (this.foodMessage) {
             this.foodMessage = undefined;
         }
+
+        window.addEventListener('beforeunload', () => {
+            localStorage.setItem('gameLeftTime', new Date().getTime());
+        })
     }
 
     getParametersFromLocalStorage() {
@@ -211,3 +219,9 @@ export default class Game extends Phaser.Scene {
         }
     }
 }
+
+// ==> выход
+// запоминаем время выхода в локалсторадж
+// ==> возвращение
+// берем разницу между временем выхода и входа и делим на количество отрезков по 30 секунд
+// success: получаем количество сытости которые нужно отнять

@@ -10,7 +10,7 @@ class LocalStorageSetter {
             petAge: this.scene.petAge,
             fulness: this.scene.fulness,
             energy: this.scene.energy,
-            moneyAmount: this.scene.moneyAmount,
+            moneyAmount: this.scene.moneyAmount
         };
     }
 
