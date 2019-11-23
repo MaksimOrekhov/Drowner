@@ -61,7 +61,7 @@ export default class GettingFood extends Phaser.Scene {
         this.moneyAmountTxt = this.add.text(
             120,
             20,
-            `Деньги: ${this.GameScene.moneyAmount}`
+            `Золото: ${this.GameScene.moneyAmount}`
         );
         this.fulnessBarTxt = this.add.text(
             120,
@@ -113,7 +113,7 @@ export default class GettingFood extends Phaser.Scene {
                 this.createDialogWindow({ tile });
             }
         }
-        this.moneyAmountTxt.setText(`Деньги: ${this.GameScene.moneyAmount}`);
+        this.moneyAmountTxt.setText(`Золото: ${this.GameScene.moneyAmount}`);
         this.fulnessBarTxt.setText(`Сытость: ${this.GameScene.fulness}`);
     }
 

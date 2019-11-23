@@ -8,22 +8,11 @@ export default class PetShop extends Phaser.Scene {
         super('PetShop');
     }
 
-    init() {}
-
-    preload() {
-        this.load.spritesheet('drowner', 'assets/images/bird.png', {
-            frameWidth: 183,
-            frameHeight: 175,
-        });
-        this.load.spritesheet('ghoul', 'assets/images/bird2.png', {
-            frameWidth: 183,
-            frameHeight: 175,
-        });
-        this.load.spritesheet('rotfiend', 'assets/images/bird3.png', {
-            frameWidth: 183,
-            frameHeight: 175,
-        });
+    init() {
+        this.getParametersFromLocalStorage();
     }
+
+    preload() {}
 
     create() {
         this.add.text(100, 10, 'Выберите своего питомца');
@@ -34,7 +23,6 @@ export default class PetShop extends Phaser.Scene {
         this.waterHag = this.add.sprite(100, 440, 'drowner');
         this.fogler = this.add.sprite(300, 440, 'ghoul');
 
-        this.addPetAnimations();
         this.setPetsInteractive();
 
         this.drowner.play('drowner');
@@ -44,53 +32,12 @@ export default class PetShop extends Phaser.Scene {
         this.fogler.play('ghoul');
     }
 
-    update() {}
-
-    addPetAnimations() {
-        this.anims.create({
-            key: 'drowner',
-            frames: this.anims.generateFrameNumbers('drowner', {
-                frames: [0, 1, 2, 1],
-            }),
-            frameRate: 5,
-            repeat: -1,
-        });
-
-        this.anims.create({
-            key: 'ghoul',
-            frames: this.anims.generateFrameNumbers('ghoul', {
-                frames: [0, 1, 2, 1],
-            }),
-            frameRate: 5,
-            repeat: -1,
-        });
-
-        this.anims.create({
-            key: 'rotfiend',
-            frames: this.anims.generateFrameNumbers('rotfiend', {
-                frames: [0, 1, 2, 1],
-            }),
-            frameRate: 5,
-            repeat: -1,
-        });
-
-        this.anims.create({
-            key: 'waterHag',
-            frames: this.anims.generateFrameNumbers('drowner', {
-                frames: [0, 1, 2, 1],
-            }),
-            frameRate: 5,
-            repeat: -1,
-        });
-
-        this.anims.create({
-            key: 'fogler',
-            frames: this.anims.generateFrameNumbers('ghoul', {
-                frames: [0, 1, 2, 1],
-            }),
-            frameRate: 5,
-            repeat: -1,
-        });
+    update() {
+        this.notEnoughMoney &&
+            this.dialogWindow.add.text(60, 200, 'У вас недостаточно золота', {
+                font: 'bold 20px Arial',
+            });
+        this.notEnoughMoney = false;
     }
 
     setPetsInteractive() {
@@ -169,23 +116,40 @@ export default class PetShop extends Phaser.Scene {
             font: 'bold 20px Arial',
         });
 
-        this.acceptTxt = this.add.text(40, 200, 'Выбрать', {
+        this.add.text(60, 160, `Ваше золото: ${this.parent.moneyAmount}`, {
             font: 'bold 20px Arial',
         });
-        this.cancelTxt = this.add.text(250, 200, 'Отмена', {
+
+        this.acceptTxt = this.add.text(40, 240, 'Выбрать', {
+            font: 'bold 20px Arial',
+        });
+        this.cancelTxt = this.add.text(250, 240, 'Отмена', {
             font: 'bold 20px Arial',
         });
 
         this.acceptTxt.setInteractive().on('pointerup', () => {
-            this.scene.stop('PetShop');
-            this.scene.remove('Game');
-            this.scene.add('Game', new Game(), false);
-            this.scene.start('Game', params);
-            this.scene.remove('DialogWindow');
+            if (this.parent.moneyAmount >= cost) {
+                this.scene.stop('PetShop');
+                this.scene.remove('Game');
+                this.scene.add('Game', new Game(), false);
+                this.scene.start('Game', params);
+                this.scene.remove('DialogWindow');
+            } else {
+                this.parent.notEnoughMoney = true;
+            }
         });
 
         this.cancelTxt.setInteractive().on('pointerup', () => {
             this.scene.remove('DialogWindow');
         });
+    }
+
+    getParametersFromLocalStorage() {
+        let parameters = JSON.parse(localStorage.getItem('parameters'));
+        if (parameters) {
+            this.moneyAmount = parameters.moneyAmount;
+        } else {
+            this.moneyAmount = 0;
+        }
     }
 }

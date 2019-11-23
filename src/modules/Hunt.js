@@ -38,7 +38,7 @@ class Hunt {
     updateMoneyAmount() {
         this.scene.pet.setActive(true).setVisible(true);
         if (this.scene.energy !== 0) this.scene.goHuntButton.setText('Пойти на охоту');
-        this.scene.moneyAmountTxt.setText(`Деньги: ${this.scene.moneyAmount}`);
+        this.scene.moneyAmountTxt.setText(`Золото: ${this.scene.moneyAmount}`);
     }
 
     setHuntingFailMessage() {

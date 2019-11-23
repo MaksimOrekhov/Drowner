@@ -37,11 +37,17 @@ export default class Game extends Phaser.Scene {
     }
 
     init(data) {
-        const { id, spriteName, spritePath } = data;
-        this.petID = id;
-        this.petSpriteName = spriteName;
-        this.petSpritePath = spritePath;
         this.getParametersFromLocalStorage();
+
+        if (Object.keys(data).length !== 0) {
+            const { id, spriteName, spritePath } = data;
+            this.petID = id;
+            this.petSpriteName = spriteName;
+            this.petSpritePath = spritePath;
+
+            this.localStorageSetter = new LocalStorageSetter(this);
+            this.localStorageSetter.setDataToStorage();
+        }
     }
 
     preload() {
@@ -68,7 +74,7 @@ export default class Game extends Phaser.Scene {
         this.moneyAmountTxt = this.add.text(
             150,
             60,
-            `Деньги: ${this.moneyAmount}`
+            `Золото: ${this.moneyAmount}`
         );
         this.noMoney = this.add.text(150, 250, '');
 
@@ -178,7 +184,7 @@ export default class Game extends Phaser.Scene {
                 );
                 this.destroyMessage(2000, this.foodMessage);
                 this.moneyAmount -= money;
-                this.moneyAmountTxt.setText(`Деньги: ${this.moneyAmount}`);
+                this.moneyAmountTxt.setText(`Золото: ${this.moneyAmount}`);
             } else {
                 if (!this.foodMessage) {
                     this.foodMessage = this.add.text(
@@ -190,7 +196,7 @@ export default class Game extends Phaser.Scene {
                 }
             }
         } else {
-            this.noMoney.setText('Недостаточно денег');
+            this.noMoney.setText('Недостаточно золота');
         }
     }
 
@@ -208,6 +214,9 @@ export default class Game extends Phaser.Scene {
             this.energy = parameters.energy;
             this.moneyAmount = parameters.moneyAmount;
             this.petAge = parameters.petAge;
+            this.petID = parameters.id;
+            this.petSpriteName = parameters.spriteName;
+            this.petSpritePath = parameters.spritePath;
         }
     }
 }
