@@ -26,8 +26,8 @@ class Fulness {
         // разница между временем входа и выхода из игра
         const diffTime = new Date().getTime() - localStorage.getItem('gameLeftTime');
         // делим разницу на период за который сытость должна уменьшится на один и вычитаем из текущей сытости
-        console.log('Столько еды я сожрал пока ты спал:', Math.floor(diffTime / 3456));
-        this.scene.fulness -= Math.floor(diffTime / 3456);
+        console.log('Столько еды я сожрал пока ты спал:', Math.floor(diffTime / 345600));
+        this.scene.fulness -= Math.floor(diffTime / 345600);
         // очищаем сторадж чтобы это говно постоянно не вызывалось (можно придумать способ получше
         // например найти место чтобы эта функция инициализировалсь только при старте игры
         localStorage.setItem('gameLeftTime', '0');
