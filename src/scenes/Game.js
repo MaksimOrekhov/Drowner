@@ -34,6 +34,7 @@ export default class Game extends Phaser.Scene {
         this.huntInstance = null;
         this.goHuntButton = null;
         this.goSleepButton = null;
+        this.petsInCollection = [0];
     }
 
     init(data) {
@@ -192,7 +193,7 @@ export default class Game extends Phaser.Scene {
                         100,
                         'Слишком много хавки! Я сыт!'
                     );
-                    this.destroyMessage(2000, this.foodMessage)
+                    this.destroyMessage(2000, this.foodMessage);
                 }
             }
         } else {
@@ -217,6 +218,7 @@ export default class Game extends Phaser.Scene {
             this.petID = parameters.id;
             this.petSpriteName = parameters.spriteName;
             this.petSpritePath = parameters.spritePath;
+            this.petsInCollection = parameters.petsInCollection;
         }
     }
 }

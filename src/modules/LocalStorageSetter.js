@@ -14,11 +14,12 @@ class LocalStorageSetter {
             id: this.scene.petID,
             spriteName: this.scene.petSpriteName,
             spritePath: this.scene.petSpritePath,
+            petsInCollection: this.scene.petsInCollection,
         };
     }
 
-    setDataToStorage(data) {
-        this.prepareDataForStorage(data);
+    setDataToStorage() {
+        this.prepareDataForStorage();
         localStorage.setItem('parameters', JSON.stringify(this.parameters));
     }
 }
