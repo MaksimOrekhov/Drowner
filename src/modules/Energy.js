@@ -21,7 +21,7 @@ class Energy {
 
             this.scene.goSleepButton = this.scene.add.text(
                 20,
-                520,
+                this.scene.cameras.main.height - 35,
                 'Пойти спать'
             );
             this.scene.goSleepButton.setInteractive();
