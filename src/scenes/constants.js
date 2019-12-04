@@ -82,12 +82,12 @@ export const PETS_PARAMETERS = [
     {
         id: 1,
         name: 'Гуль',
-        cost: 1000,
+        cost: 10,
     },
     {
         id: 2,
         name: 'Гнилец',
-        cost: 1000,
+        cost: 20,
     },
     {
         id: 3,

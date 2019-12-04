@@ -15,6 +15,15 @@ export default class PetShop extends Phaser.Scene {
     preload() {}
 
     create() {
+        this.GameScene = this.scene.get('Game');
+        let parameters = JSON.parse(localStorage.getItem('parameters'));
+
+        if (parameters) {
+            let goBackBtn = this.add.text(200, 600, 'Назад');
+            goBackBtn.setInteractive().on('pointerdown', () => {
+                this.scene.switch('Game');
+            });
+        }
         this.add.text(100, 10, 'Выберите своего питомца');
 
         this.drowner = this.add.sprite(200, 100, 'drowner');
@@ -107,7 +116,8 @@ export default class PetShop extends Phaser.Scene {
     }
 
     render(params) {
-        const { name, cost } = params;
+        const { id, name, cost } = params;
+        this.parent.getParametersFromLocalStorage();
 
         this.add.text(60, 80, `Питомец: ${name}`, {
             font: 'bold 20px Arial',
@@ -120,24 +130,31 @@ export default class PetShop extends Phaser.Scene {
             font: 'bold 20px Arial',
         });
 
-        this.acceptTxt = this.add.text(40, 240, 'Выбрать', {
-            font: 'bold 20px Arial',
-        });
+        if (this.parent.petID !== id && !this.parent.petsInCollection.includes(id)) {
+            this.acceptTxt = this.add.text(40, 240, 'Выбрать', {
+                font: 'bold 20px Arial',
+            });
+        }
+
         this.cancelTxt = this.add.text(250, 240, 'Отмена', {
             font: 'bold 20px Arial',
         });
 
-        this.acceptTxt.setInteractive().on('pointerup', () => {
-            if (this.parent.moneyAmount >= cost) {
-                this.scene.stop('PetShop');
-                this.scene.remove('Game');
-                this.scene.add('Game', new Game(), false);
-                this.scene.start('Game', params);
-                this.scene.remove('DialogWindow');
-            } else {
-                this.parent.notEnoughMoney = true;
-            }
-        });
+        let parameters = JSON.parse(localStorage.getItem('parameters'));
+
+        this.acceptTxt &&
+            this.acceptTxt.setInteractive().on('pointerup', () => {
+                if (this.parent.moneyAmount >= cost) {
+                    parameters && this.parent.buyNewPet(cost, id);
+                    this.scene.stop('PetShop');
+                    this.scene.remove('Game');
+                    this.scene.add('Game', new Game(), false);
+                    this.scene.start('Game', params);
+                    this.scene.remove('DialogWindow');
+                } else {
+                    this.parent.notEnoughMoney = true;
+                }
+            });
 
         this.cancelTxt.setInteractive().on('pointerup', () => {
             this.scene.remove('DialogWindow');
@@ -148,8 +165,16 @@ export default class PetShop extends Phaser.Scene {
         let parameters = JSON.parse(localStorage.getItem('parameters'));
         if (parameters) {
             this.moneyAmount = parameters.moneyAmount;
+            this.petID = parameters.id;
+            this.petsInCollection = parameters.petsInCollection;
         } else {
             this.moneyAmount = 0;
         }
+    }
+
+    buyNewPet(cost, id) {
+        this.GameScene.moneyAmount -= cost;
+        this.GameScene.petsInCollection.push(id);
+        this.GameScene.localStorageSetter.setDataToStorage();
     }
 }
