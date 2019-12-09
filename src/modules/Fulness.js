@@ -22,11 +22,18 @@ class Fulness {
         });
     }
 
+    /**
+     * Считает сколько единиц сытости нужно отнять пока игра была выключена
+     */
     calcFulnessAfterExit() {
         // разница между временем входа и выхода из игра
         const diffTime = new Date().getTime() - localStorage.getItem('gameLeftTime');
         // делим разницу на период за который сытость должна уменьшится на один и вычитаем из текущей сытости
         console.log('Столько еды я сожрал пока ты спал:', Math.floor(diffTime / 345600));
+        if (this.scene.fulness - Math.floor(diffTime / 345600) <= 0) {
+            console.log('Ты сдох пока спал чувак! LOL KEK')
+            this.scene.scene.start('GameOver');
+        }
         this.scene.fulness -= Math.floor(diffTime / 345600);
         // очищаем сторадж чтобы это говно постоянно не вызывалось (можно придумать способ получше
         // например найти место чтобы эта функция инициализировалсь только при старте игры

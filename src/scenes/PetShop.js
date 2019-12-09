@@ -130,7 +130,7 @@ export default class PetShop extends Phaser.Scene {
             font: 'bold 20px Arial',
         });
 
-        if (this.parent.petID !== id && !this.parent.petsInCollection.includes(id)) {
+        if (this.parent.petID !== id && !this.parent.petsInCollection) {
             this.acceptTxt = this.add.text(40, 240, 'Выбрать', {
                 font: 'bold 20px Arial',
             });
