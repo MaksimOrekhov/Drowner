@@ -1,18 +1,13 @@
 import Phaser from 'phaser';
 
 export default class GameOver extends Phaser.Scene {
-    constructor() {
+    constructor(data) {
         super('GameOver');
     }
 
-    init() {}
-
-    preload() {}
-
-    create() {
-        // todo: показывать причину по которой он умер
-        this.add.text(10, 10, 'ИГРА ОКОНЧЕНА. Ваш питомец умер.');
+    init(data) {
+        this.add.text(this.cameras.main.centerX - 100 , this.cameras.main.centerY - 25 , 'ИГРА ОКОНЧЕНА');
+        this.add.text(this.cameras.main.centerX - 100, this.cameras.main.centerY, `Ваш питомец умер из-за ${data.reason}а`);
     }
-
-    update() {}
+        // todo: добавить кнопку рестарта игры или чет такое
 }

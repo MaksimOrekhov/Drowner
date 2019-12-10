@@ -53,7 +53,7 @@ export default class Game extends Phaser.Scene {
 
     preload() {
         if (this.fulness <= 0) {
-            this.scene.start('GameOver');
+            this.scene.start('GameOver', { reason: 'голод'});
         }
 
         this.load.spritesheet('forest_day', 'assets/images/ForestDay.png', {
