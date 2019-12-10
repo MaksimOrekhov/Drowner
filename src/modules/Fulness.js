@@ -32,7 +32,6 @@ class Fulness {
         const diffTime = new Date().getTime() - localStorage.getItem('gameLeftTime');
         // делим разницу на период за который сытость должна уменьшится на один и вычитаем из текущей сытости
         console.log('Столько еды я сожрал пока ты спал:', Math.floor(diffTime / 3456));
-        console.log(this.scene.globalTimeValue / 250)
         if (this.scene.fulness - Math.floor(diffTime / 3456) <= 0) {
             console.log('Ты сдох пока спал чувак! LOL KEK')
             this.scene.scene.start('GameOver');

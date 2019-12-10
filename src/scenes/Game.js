@@ -27,7 +27,7 @@ export default class Game extends Phaser.Scene {
             grownUp: 3,
             death: 5,
         };
-        this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
+        this.globalTimeValue = TIMER_CONFIG.globalTime; // 24 часа
         this.moneyAmount = 0;
         this.energyInstance = null;
         this.sleepInstance = null;
@@ -178,7 +178,7 @@ export default class Game extends Phaser.Scene {
     }
 
     feedPet(fulness, money) {
-        // @todo refactor this shit!!!
+        // todo refactor this shit!!!
         if (this.moneyAmount - money >= 0) {
             if (this.fulness <= 90) {
                 this.fulness += fulness;
