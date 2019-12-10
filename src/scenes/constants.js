@@ -70,7 +70,12 @@ export const PET_MESSAGES = [
 ];
 
 export const TIMER_CONFIG = {
+    // 24 часа - количество часов в игровых сутках. К этому таймеру привязаны остальные циклы.
+    globalTime: 24 * 60 * 60 * 1000,
+    // 10s: периодичность появления "рандомных" сообщений от питомца
     randomMessage: 10000,
+    // 15s: время за которое сытость уменьшает на 1 единицу
+    fulnessDecrease: 15000
 };
 
 export const PETS_PARAMETERS = [

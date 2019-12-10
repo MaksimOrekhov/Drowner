@@ -90,6 +90,7 @@ export default class Game extends Phaser.Scene {
         new Growth(this);
         new GameDayTime(this);
         this.fulnessInstance.startCalcFulness();
+
         if (localStorage.getItem('gameLeftTime') !== '0') {
             this.fulnessInstance.calcFulnessAfterExit();
         }
