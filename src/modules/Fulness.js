@@ -28,15 +28,15 @@ class Fulness {
      * Считает сколько единиц сытости нужно отнять пока игра была выключена
      */
     calcFulnessAfterExit() {
-        // разница между временем входа и выхода из игра
+        // разница между временем входа и выхода из игры
         const diffTime = new Date().getTime() - localStorage.getItem('gameLeftTime');
         // делим разницу на период за который сытость должна уменьшится на один и вычитаем из текущей сытости
-        console.log('Столько еды я сожрал пока ты спал:', Math.floor(diffTime / 3456));
-        if (this.scene.fulness - Math.floor(diffTime / 3456) <= 0) {
+        console.log('Столько еды я сожрал пока ты спал:', Math.floor(diffTime / TIMER_CONFIG.fulnessDecrease));
+        if (this.scene.fulness - Math.floor(diffTime / TIMER_CONFIG.fulnessDecrease) <= 0) {
             console.log('Ты сдох пока спал чувак! LOL KEK')
             this.scene.scene.start('GameOver');
         }
-        this.scene.fulness -= Math.floor(diffTime / 3456);
+        this.scene.fulness -= Math.floor(diffTime / TIMER_CONFIG.fulnessDecrease);
         // очищаем сторадж чтобы это говно постоянно не вызывалось (можно придумать способ получше
         // например найти место чтобы эта функция инициализировалсь только при старте игры
         localStorage.setItem('gameLeftTime', '0');
