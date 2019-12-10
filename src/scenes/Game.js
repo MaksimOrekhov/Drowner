@@ -52,6 +52,10 @@ export default class Game extends Phaser.Scene {
     }
 
     preload() {
+        if (this.fulness <= 0) {
+            this.scene.start('GameOver');
+        }
+
         this.load.spritesheet('forest_day', 'assets/images/ForestDay.png', {
             frameWidth: '100%',
             frameHeight: '100%',

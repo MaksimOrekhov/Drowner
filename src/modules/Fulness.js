@@ -43,16 +43,24 @@ class Fulness {
         this.updateFulnessBar(this.scene.fulness);
     }
 
+    /**
+     * Уменьшает сытость
+     */
     updateFulness() {
         this.scene.fulness -= 1;
         this.scene.localStorageSetter.setDataToStorage();
         this.hungryTxt = this.scene.add.text(100, 250, '');
 
         this.hungryTxt.setText('');
-        if (!this.scene.fulness) {
-            this.scene.scene.start('GameOver');
+
+        if (this.scene.fulness <= 0) {
+            this.killPet()
         }
         this.updateFulnessBar(this.scene.fulness);
+    }
+
+    killPet() {
+        this.scene.scene.start('GameOver');
     }
 
     updateFulnessBar(fulness) {
