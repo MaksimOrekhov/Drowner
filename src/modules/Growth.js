@@ -3,7 +3,7 @@ class Growth {
         this.scene = scene;
 
         this.setPetBirthdate();
-        this.createAgeText();
+        // this.createAgeText();
         this.calculatePetAge();
     }
 
@@ -19,7 +19,7 @@ class Growth {
     }
 
     createAgeText() {
-        this.growthTxt = this.scene.add.text(
+        this.growthTxt = this.scene.GameScene.add.text(
             150,
             20,
             `Возраст(дней): ${this.scene.petAge}`

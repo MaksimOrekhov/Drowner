@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
-import LocalStorageSetter from '../modules/LocalStorageSetter';
 import Fulness from '../modules/Fulness';
-import Growth from '../modules/Growth';
+
 import Energy from '../modules/Energy';
 import Sleep from '../modules/Sleep';
 import Hunt from '../modules/Hunt';
@@ -12,21 +11,14 @@ import { TIMER_CONFIG } from './constants';
 export default class Game extends Phaser.Scene {
     constructor() {
         super('Game');
+        this.parameters = {};
         this.pet = null;
-        this.petSpriteName = null;
-        this.petSpritePath = null;
         this.petID = null;
         this.background = null;
-        this.petAge = 0;
         this.fulness = 100;
         this.energy = 100;
         this.strength = 1;
-        this.growthStages = {
-            child: 0,
-            teenager: 1,
-            grownUp: 3,
-            death: 5,
-        };
+
         this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
         this.moneyAmount = 0;
         this.energyInstance = null;
@@ -34,21 +26,12 @@ export default class Game extends Phaser.Scene {
         this.huntInstance = null;
         this.goHuntButton = null;
         this.goSleepButton = null;
-        this.petsInCollection = [0];
     }
 
     init(data) {
-        this.getParametersFromLocalStorage();
-
-        if (Object.keys(data).length !== 0) {
-            const { id, spriteName, spritePath } = data;
-            this.petID = id;
-            this.petSpriteName = spriteName;
-            this.petSpritePath = spritePath;
-
-            this.localStorageSetter = new LocalStorageSetter(this);
-            this.localStorageSetter.setDataToStorage();
-        }
+        this.BgLogicScene = this.scene.get('BackgroundLogicScene');
+        data && this.BgLogicScene.setDataToStorage(data);
+        this.parameters = JSON.parse(localStorage.getItem('parameters'));
     }
 
     preload() {
@@ -60,10 +43,14 @@ export default class Game extends Phaser.Scene {
             frameWidth: '100%',
             frameHeight: '100%',
         });
-        this.load.spritesheet(this.petSpriteName, this.petSpritePath, {
-            frameWidth: 183,
-            frameHeight: 175,
-        });
+        this.load.spritesheet(
+            this.parameters.spriteName,
+            this.parameters.spritePath,
+            {
+                frameWidth: 183,
+                frameHeight: 175,
+            }
+        );
         this.load.image('food', 'assets/images/food/Brownie.png');
         this.load.image('message', 'assets/images/cloud_message.png');
     }
@@ -79,15 +66,14 @@ export default class Game extends Phaser.Scene {
         );
         this.noMoney = this.add.text(150, 250, '');
 
-        this.pet = this.add.sprite(200, 350, this.petSpriteName);
+        this.pet = this.add.sprite(200, 350, this.parameters.spriteName);
 
-        this.localStorageSetter = new LocalStorageSetter(this);
         this.energyInstance = new Energy(this);
         this.sleepInstance = new Sleep(this);
         this.huntInstance = new Hunt(this);
         this.randomMessageInstance = new RandomMessage(this);
         this.fulnessInstance = new Fulness(this);
-        new Growth(this);
+
         new GameDayTime(this);
         this.fulnessInstance.startCalcFulness();
         if (localStorage.getItem('gameLeftTime') !== '0') {
@@ -112,6 +98,11 @@ export default class Game extends Phaser.Scene {
         this.huntFailedText = this.add.text(120, 420, '', {
             wordWrap: { width: 250, useAdvancedWrap: true },
         });
+        this.growthTxt = this.add.text(
+            150,
+            20,
+            `Возраст(дней): ${this.parameters.petAge}`
+        );
         this.goHuntButton = this.add.text(20, this.cameras.main.height - 35, '');
         this.goSleepButton = this.add.text(20, this.cameras.main.height - 35, '');
         this.petShopButton = this.add.text(260, this.cameras.main.height - 35, 'Магазин питомцев');
@@ -139,7 +130,7 @@ export default class Game extends Phaser.Scene {
             this.scene.switch('PetShop');
         });
 
-        this.pet.play(this.petSpriteName);
+        this.pet.play(this.parameters.spriteName);
     }
 
     showRandomMessage() {
@@ -213,21 +204,7 @@ export default class Game extends Phaser.Scene {
 
         window.addEventListener('beforeunload', () => {
             localStorage.setItem('gameLeftTime', new Date().getTime());
-        })
-    }
-
-    getParametersFromLocalStorage() {
-        let parameters = JSON.parse(localStorage.getItem('parameters'));
-        if (parameters) {
-            this.fulness = parameters.fulness;
-            this.energy = parameters.energy;
-            this.moneyAmount = parameters.moneyAmount;
-            this.petAge = parameters.petAge;
-            this.petID = parameters.id;
-            this.petSpriteName = parameters.spriteName;
-            this.petSpritePath = parameters.spritePath;
-            this.petsInCollection = parameters.petsInCollection;
-        }
+        });
     }
 }
 
