@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import LocalStorageSetter from '../modules/LocalStorageSetter';
 import Growth from '../modules/Growth';
+import Energy from '../modules/Energy';
 
 export default class BackgroundLogicScene extends Phaser.Scene {
     constructor() {
@@ -29,11 +30,10 @@ export default class BackgroundLogicScene extends Phaser.Scene {
         this.GameScene = null;
     }
 
-    init(data) {
+    init() {
         this.getParametersFromLocalStorage();
         this.localStorageSetter = new LocalStorageSetter(this);
         !JSON.parse(localStorage.getItem('parameters')) && this.localStorageSetter.setDataToStorage();
-        data && this.setDataToStorage(data);
     }
 
     preload() {
@@ -101,6 +101,7 @@ export default class BackgroundLogicScene extends Phaser.Scene {
         });
 
         new Growth(this);
+        this.energyInstance = new Energy(this);
     }
 
     update() {}
@@ -119,7 +120,7 @@ export default class BackgroundLogicScene extends Phaser.Scene {
         }
     }
 
-    setDataToStorage(key, data) {
-        this.localStorageSetter.setDataToStorage(key, data);
+    setDataToStorage(data) {
+        this.localStorageSetter.setDataToStorage(data);
     }
 }

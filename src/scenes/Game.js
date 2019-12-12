@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import Fulness from '../modules/Fulness';
 
-import Energy from '../modules/Energy';
+
 import Sleep from '../modules/Sleep';
 import Hunt from '../modules/Hunt';
 import GameDayTime from '../modules/GameDayTime';
@@ -13,10 +13,8 @@ export default class Game extends Phaser.Scene {
         super('Game');
         this.parameters = {};
         this.pet = null;
-        this.petID = null;
         this.background = null;
         this.fulness = 100;
-        this.energy = 100;
         this.strength = 1;
 
         this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
@@ -30,7 +28,7 @@ export default class Game extends Phaser.Scene {
 
     init(data) {
         this.BgLogicScene = this.scene.get('BackgroundLogicScene');
-        data && this.BgLogicScene.setDataToStorage(data);
+        Object.keys(data).length !== 0 && this.BgLogicScene.setDataToStorage(data);
         this.parameters = JSON.parse(localStorage.getItem('parameters'));
     }
 
@@ -68,7 +66,6 @@ export default class Game extends Phaser.Scene {
 
         this.pet = this.add.sprite(200, 350, this.parameters.spriteName);
 
-        this.energyInstance = new Energy(this);
         this.sleepInstance = new Sleep(this);
         this.huntInstance = new Hunt(this);
         this.randomMessageInstance = new RandomMessage(this);
@@ -103,6 +100,7 @@ export default class Game extends Phaser.Scene {
             20,
             `Возраст(дней): ${this.parameters.petAge}`
         );
+        this.energyBarTxt = this.add.text(20, 60, `Энергия: ${this.parameters.energy}`);
         this.goHuntButton = this.add.text(20, this.cameras.main.height - 35, '');
         this.goSleepButton = this.add.text(20, this.cameras.main.height - 35, '');
         this.petShopButton = this.add.text(260, this.cameras.main.height - 35, 'Магазин питомцев');

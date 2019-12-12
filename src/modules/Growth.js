@@ -3,7 +3,6 @@ class Growth {
         this.scene = scene;
 
         this.setPetBirthdate();
-        // this.createAgeText();
         this.calculatePetAge();
     }
 
@@ -18,14 +17,6 @@ class Growth {
         }
     }
 
-    createAgeText() {
-        this.growthTxt = this.scene.GameScene.add.text(
-            150,
-            20,
-            `Возраст(дней): ${this.scene.petAge}`
-        );
-    }
-
     calculatePetAge() {
         let dateNow = new Date().getTime();
         const petBirthDate = JSON.parse(localStorage.getItem('birthDate')).petBirthdate;
@@ -35,7 +26,7 @@ class Growth {
 
     updateAge(petAge) {
         this.scene.petAge = petAge;
-        this.scene.localStorageSetter.setDataToStorage();
+        this.scene.localStorageSetter.setDataToStorage({ petAge: petAge });
         switch (this.scene.petAge) {
             case this.scene.growthStages.teenager:
                 this.scene.pet.setTexture('teenager'); // меняем текстуру спрайта
@@ -46,7 +37,6 @@ class Growth {
                 this.scene.pet.play('grownUp_anim');
                 break;
         }
-        this.growthTxt.setText(`Возраст(дней): ${this.scene.petAge}`);
     }
 }
 
