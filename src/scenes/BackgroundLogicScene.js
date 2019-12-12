@@ -2,6 +2,8 @@ import Phaser from 'phaser';
 import LocalStorageSetter from '../modules/LocalStorageSetter';
 import Growth from '../modules/Growth';
 import Energy from '../modules/Energy';
+import Sleep from '../modules/Sleep';
+import Hunt from '../modules/Hunt';
 
 export default class BackgroundLogicScene extends Phaser.Scene {
     constructor() {
@@ -28,6 +30,9 @@ export default class BackgroundLogicScene extends Phaser.Scene {
             death: 5,
         };
         this.GameScene = null;
+        this.energyInstance = null;
+        this.sleepInstance = null;
+        this.huntInstance = null;
     }
 
     init() {
@@ -102,6 +107,8 @@ export default class BackgroundLogicScene extends Phaser.Scene {
 
         new Growth(this);
         this.energyInstance = new Energy(this);
+        this.sleepInstance = new Sleep(this);
+        this.huntInstance = new Hunt(this);
     }
 
     update() {}
@@ -121,6 +128,7 @@ export default class BackgroundLogicScene extends Phaser.Scene {
     }
 
     setDataToStorage(data) {
+        console.log('---', 'here')
         this.localStorageSetter.setDataToStorage(data);
     }
 }

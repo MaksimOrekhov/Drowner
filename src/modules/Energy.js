@@ -6,7 +6,7 @@ class Energy {
     decreaseEnergyValue() {
         if (this.scene.energy !== 0) {
             this.scene.energy -= 20;
-            this.scene.localStorageSetter.setDataToStorage();
+            this.scene.setDataToStorage({ energy: this.scene.energy });
             this.updateEnergyBar();
         }
     }

@@ -1,7 +1,10 @@
 class LocalStorageSetter {
     constructor(scene) {
         this.scene = scene;
-        this.parameters = {
+    }
+
+    getParams() {
+        return {
             petAge: this.scene.petAge,
             fulness: this.scene.fulness,
             energy: this.scene.energy,
@@ -14,8 +17,9 @@ class LocalStorageSetter {
     }
 
     setDataToStorage(data) {
-        let params = { ...this.parameters, ...data };
-        localStorage.setItem('parameters', JSON.stringify(params));
+        let parameters = this.getParams();
+        let newParams = { ...parameters, ...data };
+        localStorage.setItem('parameters', JSON.stringify(newParams));
     }
 }
 

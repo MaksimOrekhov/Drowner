@@ -1,9 +1,5 @@
 import Phaser from 'phaser';
 import Fulness from '../modules/Fulness';
-
-
-import Sleep from '../modules/Sleep';
-import Hunt from '../modules/Hunt';
 import GameDayTime from '../modules/GameDayTime';
 import RandomMessage from '../modules/RandomMessage';
 import { TIMER_CONFIG } from './constants';
@@ -19,9 +15,7 @@ export default class Game extends Phaser.Scene {
 
         this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
         this.moneyAmount = 0;
-        this.energyInstance = null;
-        this.sleepInstance = null;
-        this.huntInstance = null;
+
         this.goHuntButton = null;
         this.goSleepButton = null;
     }
@@ -60,14 +54,14 @@ export default class Game extends Phaser.Scene {
         this.moneyAmountTxt = this.add.text(
             150,
             60,
-            `Золото: ${this.moneyAmount}`
+            `Золото: ${this.parameters.moneyAmount}`
         );
         this.noMoney = this.add.text(150, 250, '');
 
         this.pet = this.add.sprite(200, 350, this.parameters.spriteName);
 
-        this.sleepInstance = new Sleep(this);
-        this.huntInstance = new Hunt(this);
+
+
         this.randomMessageInstance = new RandomMessage(this);
         this.fulnessInstance = new Fulness(this);
 

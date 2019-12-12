@@ -14,7 +14,7 @@ export default class HuntMap extends Phaser.Scene {
     }
 
     create() {
-        this.GameScene = this.scene.get('Game');
+        this.BgLogicScene = this.scene.get('BackgroundLogicScene');
         this.huntMap = this.add.image(0, 0, 'huntMap');
         this.huntMap.setOrigin(0, 0);
         this.huntMap.setScale(0.3, 0.4);
@@ -99,8 +99,8 @@ export default class HuntMap extends Phaser.Scene {
         });
 
         this.goHuntTxt.setInteractive().on('pointerup', () => {
-            this.parent.GameScene.energyInstance.decreaseEnergyValue();
-            this.parent.GameScene.huntInstance.goHunting(monsterStrength);
+            this.parent.BgLogicScene.energyInstance.decreaseEnergyValue();
+            this.parent.BgLogicScene.huntInstance.goHunting(monsterStrength);
 
             this.scene.stop('HuntMap');
             this.scene.setVisible(true, 'Game');
