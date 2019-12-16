@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import Fulness from '../modules/Fulness';
 import GameDayTime from '../modules/GameDayTime';
 import RandomMessage from '../modules/RandomMessage';
 import { TIMER_CONFIG } from './constants';
@@ -22,7 +21,8 @@ export default class Game extends Phaser.Scene {
 
     init(data) {
         this.BgLogicScene = this.scene.get('BackgroundLogicScene');
-        Object.keys(data).length !== 0 && this.BgLogicScene.setDataToStorage(data);
+        Object.keys(data).length !== 0 &&
+            this.BgLogicScene.setDataToStorage(data);
         this.parameters = JSON.parse(localStorage.getItem('parameters'));
     }
 
@@ -56,19 +56,22 @@ export default class Game extends Phaser.Scene {
             60,
             `Золото: ${this.parameters.moneyAmount}`
         );
+        this.fulnessBarTxt = this.add.text(
+            20,
+            20,
+            `Сытость: ${this.parameters.fulness}`
+        );
         this.noMoney = this.add.text(150, 250, '');
+        this.foodMessage = this.add.text(100, 100, '');
 
         this.pet = this.add.sprite(200, 350, this.parameters.spriteName);
 
-
-
         this.randomMessageInstance = new RandomMessage(this);
-        this.fulnessInstance = new Fulness(this);
 
         new GameDayTime(this);
-        this.fulnessInstance.startCalcFulness();
+        this.BgLogicScene.fulnessInstance.startCalcFulness();
         if (localStorage.getItem('gameLeftTime') !== '0') {
-            this.fulnessInstance.calcFulnessAfterExit();
+            this.BgLogicScene.fulnessInstance.calcFulnessAfterExit();
         }
 
         this.time.addEvent({
@@ -94,17 +97,33 @@ export default class Game extends Phaser.Scene {
             20,
             `Возраст(дней): ${this.parameters.petAge}`
         );
-        this.energyBarTxt = this.add.text(20, 60, `Энергия: ${this.parameters.energy}`);
-        this.goHuntButton = this.add.text(20, this.cameras.main.height - 35, '');
-        this.goSleepButton = this.add.text(20, this.cameras.main.height - 35, '');
-        this.petShopButton = this.add.text(260, this.cameras.main.height - 35, 'Магазин питомцев');
+        this.energyBarTxt = this.add.text(
+            20,
+            60,
+            `Энергия: ${this.parameters.energy}`
+        );
+        this.goHuntButton = this.add.text(
+            20,
+            this.cameras.main.height - 35,
+            ''
+        );
+        this.goSleepButton = this.add.text(
+            20,
+            this.cameras.main.height - 35,
+            ''
+        );
+        this.petShopButton = this.add.text(
+            260,
+            this.cameras.main.height - 35,
+            'Магазин питомцев'
+        );
 
         this.goHuntButton.setInteractive();
         this.goSleepButton.setInteractive();
         this.petShopButton.setInteractive();
 
         this.goSleepButton.on('pointerdown', () => {
-            this.sleepInstance.increaseEnergyValue();
+            this.BgLogicScene.sleepInstance.increaseEnergyValue();
         });
 
         this.goHuntButton.on('pointerdown', () => {
@@ -112,7 +131,7 @@ export default class Game extends Phaser.Scene {
             this.scene.launch('HuntMap');
         });
 
-        if (this.energy === 0) {
+        if (this.parameters.energy === 0) {
             this.goSleepButton.setText('Пойти спать');
         } else {
             this.goHuntButton.setText('Пойти на охоту');
@@ -132,7 +151,13 @@ export default class Game extends Phaser.Scene {
             150,
             225,
             this.randomMessageInstance.getMessage(),
-            { color: '#000', wordWrap: { width: this.messageImg.width * 0.22, useAdvancedWrap: true } }
+            {
+                color: '#000',
+                wordWrap: {
+                    width: this.messageImg.width * 0.22,
+                    useAdvancedWrap: true,
+                },
+            }
         );
 
         // если сообщение в три строки увеличиваем подложку и сдвигаем её
@@ -159,39 +184,10 @@ export default class Game extends Phaser.Scene {
         this.scene.resume('Game');
     }
 
-    feedPet(fulness, money) {
-        // @todo refactor this shit!!!
-        if (this.moneyAmount - money >= 0) {
-            if (this.fulness <= 90) {
-                this.fulness += fulness;
-                this.localStorageSetter.setDataToStorage();
-                this.foodMessage = this.add.text(
-                    100,
-                    100,
-                    'Спасибо бро, этот бургер был не лишним!'
-                );
-                this.destroyMessage(2000, this.foodMessage);
-                this.moneyAmount -= money;
-                this.moneyAmountTxt.setText(`Золото: ${this.moneyAmount}`);
-            } else {
-                if (!this.foodMessage) {
-                    this.foodMessage = this.add.text(
-                        100,
-                        100,
-                        'Слишком много хавки! Я сыт!'
-                    );
-                    this.destroyMessage(2000, this.foodMessage);
-                }
-            }
-        } else {
-            this.noMoney.setText('Недостаточно золота');
-        }
-    }
-
     update() {
         // Очистка сообщения о сытости
         if (this.foodMessage) {
-            this.foodMessage = undefined;
+            // this.foodMessage = undefined;
         }
 
         window.addEventListener('beforeunload', () => {

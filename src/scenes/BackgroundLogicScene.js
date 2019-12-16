@@ -4,6 +4,7 @@ import Growth from '../modules/Growth';
 import Energy from '../modules/Energy';
 import Sleep from '../modules/Sleep';
 import Hunt from '../modules/Hunt';
+import Fulness from '../modules/Fulness';
 
 export default class BackgroundLogicScene extends Phaser.Scene {
     constructor() {
@@ -20,9 +21,10 @@ export default class BackgroundLogicScene extends Phaser.Scene {
         this.strength = 1;
         this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
         this.moneyAmount = 0;
-        this.energyInstance = null;
-        this.sleepInstance = null;
-        this.huntInstance = null;
+        this.energyInstance = new Energy(this);
+        this.sleepInstance = new Sleep(this);
+        this.huntInstance = new Hunt(this);
+        this.fulnessInstance = new Fulness(this);
         this.growthStages = {
             child: 0,
             teenager: 1,
@@ -30,9 +32,6 @@ export default class BackgroundLogicScene extends Phaser.Scene {
             death: 5,
         };
         this.GameScene = null;
-        this.energyInstance = null;
-        this.sleepInstance = null;
-        this.huntInstance = null;
     }
 
     init() {
@@ -59,6 +58,7 @@ export default class BackgroundLogicScene extends Phaser.Scene {
     create() {
         this.GameScene = this.scene.get('Game');
         this.scene.launch('StartScreen');
+        new Growth(this);
 
         this.anims.create({
             key: 'drowner',
@@ -104,11 +104,6 @@ export default class BackgroundLogicScene extends Phaser.Scene {
             frameRate: 5,
             repeat: -1,
         });
-
-        new Growth(this);
-        this.energyInstance = new Energy(this);
-        this.sleepInstance = new Sleep(this);
-        this.huntInstance = new Hunt(this);
     }
 
     update() {}
@@ -128,7 +123,6 @@ export default class BackgroundLogicScene extends Phaser.Scene {
     }
 
     setDataToStorage(data) {
-        console.log('---', 'here')
         this.localStorageSetter.setDataToStorage(data);
     }
 }

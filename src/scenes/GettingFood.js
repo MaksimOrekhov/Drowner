@@ -26,6 +26,7 @@ export default class GettingFood extends Phaser.Scene {
 
     create() {
         this.background = this.add.sprite(0, 500, 'gettingFood_bg');
+        this.BgLogicScene = this.scene.get('BackgroundLogicScene');
         this.GameScene = this.scene.get('Game');
         const homeBtn = this.add.text(20, 20, 'Назад');
         homeBtn.setInteractive();
@@ -61,12 +62,12 @@ export default class GettingFood extends Phaser.Scene {
         this.moneyAmountTxt = this.add.text(
             120,
             20,
-            `Золото: ${this.GameScene.moneyAmount}`
+            `Золото: ${this.BgLogicScene.moneyAmount}`
         );
         this.fulnessBarTxt = this.add.text(
             120,
             60,
-            `Сытость: ${this.GameScene.fulness}`
+            `Сытость: ${this.BgLogicScene.fulness}`
         );
         this.count = 0;
     }
@@ -113,8 +114,8 @@ export default class GettingFood extends Phaser.Scene {
                 this.createDialogWindow({ tile });
             }
         }
-        this.moneyAmountTxt.setText(`Золото: ${this.GameScene.moneyAmount}`);
-        this.fulnessBarTxt.setText(`Сытость: ${this.GameScene.fulness}`);
+        this.moneyAmountTxt.setText(`Золото: ${this.BgLogicScene.moneyAmount}`);
+        this.fulnessBarTxt.setText(`Сытость: ${this.BgLogicScene.fulness}`);
     }
 
     render(params) {
@@ -136,7 +137,7 @@ export default class GettingFood extends Phaser.Scene {
         this.feedPetTxt.setInteractive().on('pointerdown', () => {
             this.scene.remove('DialogWindow');
 
-            this.parent.GameScene.feedPet(
+            this.parent.feedPet(
                 FOOD_TYPES[tile.index].fulness,
                 FOOD_TYPES[tile.index].cost
             );
@@ -145,5 +146,30 @@ export default class GettingFood extends Phaser.Scene {
         this.cancelTxt.setInteractive().on('pointerdown', () => {
             this.scene.remove('DialogWindow');
         });
+    }
+
+    feedPet(fulness, money) {
+        // @todo refactor this shit!!!
+        if (this.BgLogicScene.moneyAmount - money >= 0) {
+            if (this.BgLogicScene.fulness <= 90) {
+                this.BgLogicScene.fulness += fulness;
+                this.BgLogicScene.setDataToStorage({ fulness: this.BgLogicScene.fulness });
+                this.GameScene.foodMessage.setText(
+                    'Спасибо бро, этот бургер был не лишним!'
+                );
+                this.GameScene.destroyMessage(2000, this.GameScene.foodMessage);
+                this.BgLogicScene.moneyAmount -= money;
+                this.moneyAmountTxt.setText(`Золото: ${this.BgLogicScene.moneyAmount}`);
+            } else {
+                if (!this.GameScene.foodMessage) {
+                    this.GameScene.foodMessage.setText(
+                        'Слишком много хавки! Я сыт!'
+                    );
+                    this.GameScene.destroyMessage(2000, this.GameScene.foodMessage);
+                }
+            }
+        } else {
+            this.GameScene.noMoney.setText('Недостаточно золота');
+        }
     }
 }

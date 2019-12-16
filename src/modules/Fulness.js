@@ -2,15 +2,6 @@ class Fulness {
     constructor(scene) {
         this.scene = scene;
         console.log('столько еды при инициализации', this.scene.fulness);
-        this.fulnessBar();
-    }
-
-    fulnessBar() {
-        this.fulnessBarTxt = this.scene.add.text(
-            20,
-            20,
-            `Сытость: ${this.scene.fulness}`
-        );
     }
 
     startCalcFulness() {
@@ -36,10 +27,10 @@ class Fulness {
 
     updateFulness() {
         this.scene.fulness -= 1;
-        this.scene.localStorageSetter.setDataToStorage();
-        this.hungryTxt = this.scene.add.text(100, 250, '');
+        this.scene.setDataToStorage({ fulness: this.scene.fulness });
+        this.scene.GameScene.hungryTxt = this.scene.add.text(100, 250, '');
 
-        this.hungryTxt.setText('');
+        this.scene.GameScene.hungryTxt.setText('');
         if (!this.scene.fulness) {
             this.scene.scene.start('GameOver');
         }
@@ -47,7 +38,7 @@ class Fulness {
     }
 
     updateFulnessBar(fulness) {
-        this.fulnessBarTxt.setText(`Сытость: ${fulness}`);
+        this.scene.GameScene.fulnessBarTxt && this.scene.GameScene.fulnessBarTxt.setText(`Сытость: ${fulness}`);
     }
 }
 

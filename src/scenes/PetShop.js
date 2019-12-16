@@ -175,6 +175,9 @@ export default class PetShop extends Phaser.Scene {
     buyNewPet(cost, id) {
         this.BgLogicScene.moneyAmount -= cost;
         this.BgLogicScene.petsInCollection.push(id);
-        this.BgLogicScene.localStorageSetter.setDataToStorage();
+        this.BgLogicScene.localStorageSetter.setDataToStorage({
+            moneyAmount: this.BgLogicScene.moneyAmount,
+            petsInCollection: this.BgLogicScene.petsInCollection,
+        });
     }
 }

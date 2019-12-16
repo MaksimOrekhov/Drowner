@@ -26,16 +26,18 @@ class Growth {
 
     updateAge(petAge) {
         this.scene.petAge = petAge;
-        this.scene.localStorageSetter.setDataToStorage({ petAge: petAge });
-        switch (this.scene.petAge) {
-            case this.scene.growthStages.teenager:
-                this.scene.pet.setTexture('teenager'); // меняем текстуру спрайта
-                this.scene.pet.play('teenager_anim');
-                break;
-            case this.scene.growthStages.grownUp:
-                this.scene.pet.setTexture('grownUp');
-                this.scene.pet.play('grownUp_anim');
-                break;
+        this.scene.setDataToStorage({ petAge: petAge });
+        if (this.scene.GameScene.pet) {
+            switch (this.scene.petAge) {
+                case this.scene.growthStages.teenager:
+                    this.scene.GameScene.pet.setTexture('teenager'); // меняем текстуру спрайта
+                    this.scene.GameScene.pet.play('teenager_anim');
+                    break;
+                case this.scene.growthStages.grownUp:
+                    this.scene.GameScene.pet.setTexture('grownUp');
+                    this.scene.GameScene.pet.play('grownUp_anim');
+                    break;
+            }
         }
     }
 }
