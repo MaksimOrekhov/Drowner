@@ -15,7 +15,7 @@ export default class PetShop extends Phaser.Scene {
     preload() {}
 
     create() {
-        this.GameScene = this.scene.get('Game');
+        this.BgLogicScene = this.scene.get('BackgroundLogicScene');
         let parameters = JSON.parse(localStorage.getItem('parameters'));
 
         if (parameters) {
@@ -173,8 +173,11 @@ export default class PetShop extends Phaser.Scene {
     }
 
     buyNewPet(cost, id) {
-        this.GameScene.moneyAmount -= cost;
-        this.GameScene.petsInCollection.push(id);
-        this.GameScene.localStorageSetter.setDataToStorage();
+        this.BgLogicScene.moneyAmount -= cost;
+        this.BgLogicScene.petsInCollection.push(id);
+        this.BgLogicScene.localStorageSetter.setDataToStorage({
+            moneyAmount: this.BgLogicScene.moneyAmount,
+            petsInCollection: this.BgLogicScene.petsInCollection,
+        });
     }
 }

@@ -16,19 +16,19 @@ class Sleep {
 
     updateEnergyValue() {
         if (this.scene.energy !== 100) {
-            this.scene.goSleepButton.setText('');
-            this.scene.huntFailedText.setText('');
+            this.scene.GameScene.goSleepButton.setText('');
+            this.scene.GameScene.huntFailedText.setText('');
             this.scene.energy += 10;
-            this.scene.localStorageSetter.setDataToStorage();
+            this.scene.setDataToStorage({ scene: this.scene.energy });
             this.updateEnergyBar();
         } else {
             this.increaseEnergyTimer.remove();
-            this.scene.goHuntButton.setText('Пойти на охоту');
+            this.scene.GameScene.goHuntButton.setText('Пойти на охоту');
         }
     }
 
     updateEnergyBar() {
-        this.scene.energyBarTxt.setText(`Энергия: ${this.scene.energy}`);
+        this.scene.GameScene.energyBarTxt.setText(`Энергия: ${this.scene.energy}`);
     }
 }
 

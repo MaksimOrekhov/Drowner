@@ -9,8 +9,8 @@ class Hunt {
     }
 
     goHunting(enemyStrength) {
-        this.scene.goHuntButton.setText('');
-        this.scene.pet.setActive(false).setVisible(false);
+        this.scene.GameScene.goHuntButton.setText('');
+        this.scene.GameScene.pet.setActive(false).setVisible(false);
         if (!this.meetWitcherOnHunt()) {
             if (this.executionProbability(enemyStrength)) {
                 setTimeout(() => {
@@ -30,21 +30,21 @@ class Hunt {
 
     increaseMoneyValue() {
         this.scene.moneyAmount += Phaser.Math.Between(this.minAmount, this.maxAmount) + this.scene.strength;
-        this.scene.localStorageSetter.setDataToStorage();
+        this.scene.setDataToStorage({ moneyAmount: this.scene.moneyAmount });
         this.updateMoneyAmount();
-        this.scene.huntFailedText.setText('');
+        this.scene.GameScene.huntFailedText.setText('');
     }
 
     updateMoneyAmount() {
-        this.scene.pet.setActive(true).setVisible(true);
-        if (this.scene.energy !== 0) this.scene.goHuntButton.setText('Пойти на охоту');
-        this.scene.moneyAmountTxt.setText(`Золото: ${this.scene.moneyAmount}`);
+        this.scene.GameScene.pet.setActive(true).setVisible(true);
+        if (this.scene.energy !== 0) this.scene.GameScene.goHuntButton.setText('Пойти на охоту');
+        this.scene.GameScene.moneyAmountTxt.setText(`Золото: ${this.scene.moneyAmount}`);
     }
 
     setHuntingFailMessage() {
-        this.scene.pet.setActive(true).setVisible(true);
-        if (this.scene.energy !== 0) this.scene.goHuntButton.setText('Пойти на охоту');
-        this.scene.huntFailedText.setText(
+        this.scene.GameScene.pet.setActive(true).setVisible(true);
+        if (this.scene.energy !== 0) this.scene.GameScene.goHuntButton.setText('Пойти на охоту');
+        this.scene.GameScene.huntFailedText.setText(
             'Ваш питомец потерпел неудачу. Попробуйте поохотиться в другом месте.'
         );
     }
@@ -64,14 +64,14 @@ class Hunt {
     }
 
     setWitcherMeetingMessage() {
-        this.scene.huntFailedText.setText(
+        this.scene.GameScene.huntFailedText.setText(
             'Ваш питомец встретил ведьмака на охоте и получил увечья. Ему необходимо отдохнуть.'
         );
-        this.scene.pet.setActive(true).setVisible(true);
+        this.scene.GameScene.pet.setActive(true).setVisible(true);
         this.scene.energy = 0;
-        this.scene.localStorageSetter.setDataToStorage();
+        this.scene.localStorageSetter.setDataToStorage({ energy: this.scene.energy });
         this.scene.energyInstance.updateEnergyBar();
-        this.scene.goSleepButton.setText('Пойти спать');
+        this.scene.GameScene.goSleepButton.setText('Пойти спать');
     }
 }
 

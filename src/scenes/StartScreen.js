@@ -32,7 +32,7 @@ export default class StartScreen extends Phaser.Scene {
         let petParameters = JSON.parse(localStorage.getItem('parameters'));
 
         this.gameStart.on('pointerdown', (pointer, localX, localY, event) => {
-            petParameters ? this.scene.start('Game') : this.scene.start('PetShop')
+            petParameters.id !== null ? this.scene.start('Game') : this.scene.start('PetShop')
         });
     }
 
