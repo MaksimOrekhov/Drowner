@@ -1,3 +1,5 @@
+import { TIMER_CONFIG } from "../scenes/constants";
+
 class Sleep {
     constructor(scene) {
         this.scene = scene;
@@ -5,7 +7,7 @@ class Sleep {
 
     increaseEnergyValue() {
         this.increaseEnergyTimer = this.scene.time.addEvent({
-            delay: this.scene.globalTimeValue / 288000,
+            delay: TIMER_CONFIG.sleep,
             callback: this.updateEnergyValue,
             callbackScope: this,
             loop: true,
