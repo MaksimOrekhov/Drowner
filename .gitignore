@@ -1,0 +1,11 @@
+node_modules/
+www/
+platforms/
+plugins/
+dist/
+.vscode/
+*.log
+/index.html
+build/
+.idea/
+assets/.DS_Store

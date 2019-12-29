@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "extends": "prettier",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  },
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "phaser": true
+  },
+  "settings": {
+    "import/core-modules": ["phaser", "pixi", "p2"]
+  }
+}
