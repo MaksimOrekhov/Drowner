@@ -130,7 +130,10 @@ export default class PetShop extends Phaser.Scene {
             font: 'bold 20px Arial',
         });
 
-        if (this.parent.petID !== id && !this.parent.petsInCollection.includes(id)) {
+        if (
+            this.parent.petID !== id &&
+            !this.parent.petsInCollection.includes(id)
+        ) {
             this.acceptTxt = this.add.text(40, 240, 'Выбрать', {
                 font: 'bold 20px Arial',
             });
@@ -145,11 +148,15 @@ export default class PetShop extends Phaser.Scene {
         this.acceptTxt &&
             this.acceptTxt.setInteractive().on('pointerup', () => {
                 if (this.parent.moneyAmount >= cost) {
-                    parameters && this.parent.buyNewPet(cost, id);
-                    this.scene.stop('PetShop');
-                    this.scene.remove('Game');
-                    this.scene.add('Game', new Game(), false);
-                    this.scene.start('Game', params);
+                    this.parent.buyNewPet(cost, id);
+                    if (parameters.id) {
+                        this.scene.stop('PetShop');
+                        this.scene.start('Game');
+                    } else {
+                        this.scene.stop('PetShop');
+                        this.scene.start('Game', params);
+                    }
+
                     this.scene.remove('DialogWindow');
                 } else {
                     this.parent.notEnoughMoney = true;

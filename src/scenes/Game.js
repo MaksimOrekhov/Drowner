@@ -70,7 +70,7 @@ export default class Game extends Phaser.Scene {
 
         new GameDayTime(this);
         this.BgLogicScene.fulnessInstance.startCalcFulness();
-        if (localStorage.getItem('gameLeftTime') !== '0') {
+        if (JSON.parse(localStorage.getItem('gameLeftTime')) !== '0') {
             this.BgLogicScene.fulnessInstance.calcFulnessAfterExit();
         }
 
@@ -191,7 +191,7 @@ export default class Game extends Phaser.Scene {
         }
 
         window.addEventListener('beforeunload', () => {
-            localStorage.setItem('gameLeftTime', new Date().getTime());
+            localStorage.setItem('gameLeftTime', JSON.stringify(new Date().getTime()));
         });
     }
 }
