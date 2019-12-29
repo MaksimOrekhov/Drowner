@@ -6,9 +6,9 @@ class Fulness {
 
     startCalcFulness() {
         this.scene.time.addEvent({
-            delay: this.scene.globalTimeValue / 250, // 30 sec
+            delay: this.scene.globalTimeValue / 250000, // 30 sec
             callback: this.updateFulness,
-            callbackScope: this.scene,
+            callbackScope: this,
             loop: true,
         });
     }
