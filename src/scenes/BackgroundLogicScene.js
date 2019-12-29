@@ -60,8 +60,13 @@ export default class BackgroundLogicScene extends Phaser.Scene {
         if (this.fulness > 0) {
             this.scene.launch('StartScreen');
         } else {
-            this.scene.launch('GameOver');
+            this.scene.launch('GameOver', 'еда');
         }
+
+        window.addEventListener('beforeunload', () => {
+            localStorage.setItem('gameLeftTime', new Date().getTime());
+        });
+
         new Growth(this);
 
         this.anims.create({
@@ -110,7 +115,8 @@ export default class BackgroundLogicScene extends Phaser.Scene {
         });
     }
 
-    update() {}
+    update() {
+    }
 
     getParametersFromLocalStorage() {
         let parameters = JSON.parse(localStorage.getItem('parameters'));

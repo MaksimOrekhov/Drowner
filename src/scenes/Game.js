@@ -189,10 +189,6 @@ export default class Game extends Phaser.Scene {
         if (this.foodMessage) {
             // this.foodMessage = undefined;
         }
-
-        window.addEventListener('beforeunload', () => {
-            localStorage.setItem('gameLeftTime', new Date().getTime());
-        });
     }
 }
 

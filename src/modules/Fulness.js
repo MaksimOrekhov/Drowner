@@ -3,7 +3,6 @@ import { TIMER_CONFIG } from "../scenes/constants";
 class Fulness {
     constructor(scene) {
         this.scene = scene;
-        console.log('столько еды при инициализации', this.scene.fulness);
     }
 
     startCalcFulness() {
