@@ -57,7 +57,11 @@ export default class BackgroundLogicScene extends Phaser.Scene {
 
     create() {
         this.GameScene = this.scene.get('Game');
-        this.scene.launch('StartScreen');
+        if (this.fulness > 0) {
+            this.scene.launch('StartScreen');
+        } else {
+            this.scene.launch('GameOver');
+        }
         new Growth(this);
 
         this.anims.create({
@@ -120,6 +124,10 @@ export default class BackgroundLogicScene extends Phaser.Scene {
             this.petSpritePath = parameters.spritePath;
             this.petsInCollection = parameters.petsInCollection;
         }
+    }
+
+    isPetAlive() {
+        return this.fulness >= 0;
     }
 
     setDataToStorage(data) {

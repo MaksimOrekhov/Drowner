@@ -14,6 +14,5 @@ class Game extends Phaser.Game {
                 ? config.height
                 : docElement.clientHeight;
         super(width, height, Phaser.CANVAS, 'content', null);
-        this.scene.start('StartScreen');
     }
 }

@@ -21,7 +21,7 @@ export default class PetShop extends Phaser.Scene {
         if (parameters) {
             let goBackBtn = this.add.text(200, 600, 'Назад');
             goBackBtn.setInteractive().on('pointerdown', () => {
-                this.scene.switch('Game');
+                this.scene.switch('StartScreen');
             });
         }
         this.add.text(100, 10, 'Выберите своего питомца');
@@ -129,7 +129,13 @@ export default class PetShop extends Phaser.Scene {
         this.add.text(60, 160, `Ваше золото: ${this.parent.moneyAmount}`, {
             font: 'bold 20px Arial',
         });
-
+        // При первом запуске игры когда у нас нет petId выводим кнопочку выбрать
+        if (this.parent.petID === null) {
+            this.acceptTxt = this.add.text(40, 240, 'Выбрать', {
+                font: 'bold 20px Arial',
+            });
+        }
+        // В остальных случаях выводим эту кнопочку выбрать :D
         if (this.parent.petID !== id && !this.parent.petsInCollection) {
             this.acceptTxt = this.add.text(40, 240, 'Выбрать', {
                 font: 'bold 20px Arial',
