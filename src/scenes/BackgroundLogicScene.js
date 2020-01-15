@@ -58,6 +58,9 @@ export default class BackgroundLogicScene extends Phaser.Scene {
     create() {
         this.GameScene = this.scene.get('Game');
         this.scene.launch('StartScreen');
+        if (this.fulness < 0) {
+            this.scene.launch('GameOver');
+        }
         new Growth(this);
 
         this.anims.create({

@@ -3,37 +3,37 @@ export const FOOD_TYPES = [
         index: 0,
         cost: 1,
         fulness: 10,
-        name: 'первая еда'
+        name: 'первая еда',
     },
     {
         index: 1,
         cost: 1,
         fulness: 10,
-        name: 'вторая еда'
+        name: 'вторая еда',
     },
     {
         index: 2,
         cost: 1,
         fulness: 10,
-        name: 'третья еда'
+        name: 'третья еда',
     },
     {
         index: 3,
         cost: 1,
         fulness: 10,
-        name: 'четвертая еда'
+        name: 'четвертая еда',
     },
     {
         index: 4,
         cost: 1,
         fulness: 10,
-        name: 'пятая еда'
+        name: 'пятая еда',
     },
     {
         index: 5,
         cost: 1,
         fulness: 10,
-        name: 'шестая еда'
+        name: 'шестая еда',
     },
 ];
 
@@ -76,9 +76,9 @@ export const TIMER_CONFIG = {
     // 10s: периодичность появления "рандомных" сообщений от питомца
     randomMessage: 10000,
     // 15s: время за которое сытость уменьшает на 1 единицу
-    fulnessDecrease: 15000,
+    fulnessDecrease: 5000,
     // 0.3s: время за которое во сне энергия увеличивается на 10 единиц
-    sleep: 300
+    sleep: 300,
 };
 
 export const PETS_PARAMETERS = [
