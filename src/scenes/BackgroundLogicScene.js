@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { TIMER_CONFIG } from './constants';
 import LocalStorageSetter from '../modules/LocalStorageSetter';
 import Growth from '../modules/Growth';
 import Energy from '../modules/Energy';
@@ -19,7 +20,7 @@ export default class BackgroundLogicScene extends Phaser.Scene {
         this.fulness = 100;
         this.energy = 100;
         this.strength = 1;
-        this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
+        this.globalTimeValue = TIMER_CONFIG.globalTime; // 24 часа
         this.moneyAmount = 0;
         this.energyInstance = new Energy(this);
         this.sleepInstance = new Sleep(this);
@@ -37,7 +38,8 @@ export default class BackgroundLogicScene extends Phaser.Scene {
     init() {
         this.getParametersFromLocalStorage();
         this.localStorageSetter = new LocalStorageSetter(this);
-        !JSON.parse(localStorage.getItem('parameters')) && this.localStorageSetter.setDataToStorage();
+        !JSON.parse(localStorage.getItem('parameters')) &&
+            this.localStorageSetter.setDataToStorage();
     }
 
     preload() {
@@ -58,9 +60,7 @@ export default class BackgroundLogicScene extends Phaser.Scene {
     create() {
         this.GameScene = this.scene.get('Game');
         this.scene.launch('StartScreen');
-        if (this.fulness < 0) {
-            this.scene.launch('GameOver');
-        }
+
         new Growth(this);
 
         this.anims.create({
@@ -109,7 +109,11 @@ export default class BackgroundLogicScene extends Phaser.Scene {
         });
     }
 
-    update() {}
+    update() {
+        if (this.fulness <= 0) {
+            this.showGameOver();
+        }
+    }
 
     getParametersFromLocalStorage() {
         let parameters = JSON.parse(localStorage.getItem('parameters'));
@@ -123,6 +127,12 @@ export default class BackgroundLogicScene extends Phaser.Scene {
             this.petSpritePath = parameters.spritePath;
             this.petsInCollection = parameters.petsInCollection;
         }
+    }
+
+    showGameOver() {
+        this.scene.remove('Game');
+        this.scene.remove('StartScreen');
+        this.scene.switch('GameOver');
     }
 
     setDataToStorage(data) {

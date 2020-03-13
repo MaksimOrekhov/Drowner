@@ -40,11 +40,7 @@ class Fulness {
         this.scene.fulness -= 1;
         this.scene.setDataToStorage({ fulness: this.scene.fulness });
         this.scene.GameScene.hungryTxt = this.scene.add.text(100, 250, '');
-
         this.scene.GameScene.hungryTxt.setText('');
-        if (this.scene.fulness <= 0) {
-            this.scene.scene.switch('GameOver');
-        }
         this.updateFulnessBar(this.scene.fulness);
     }
 

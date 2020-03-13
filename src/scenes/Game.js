@@ -9,7 +9,6 @@ export default class Game extends Phaser.Scene {
         this.parameters = {};
         this.pet = null;
         this.background = null;
-        this.fulness = 100;
         this.strength = 1;
 
         this.globalTimeValue = 24 * 60 * 60 * 1000; // 24 часа
@@ -21,6 +20,7 @@ export default class Game extends Phaser.Scene {
 
     init(data) {
         this.BgLogicScene = this.scene.get('BackgroundLogicScene');
+        console.log('2', this.BgLogicScene);
         Object.keys(data).length !== 0 &&
             this.BgLogicScene.setDataToStorage(data);
         this.parameters = JSON.parse(localStorage.getItem('parameters'));
@@ -47,6 +47,13 @@ export default class Game extends Phaser.Scene {
         this.load.image('message', 'assets/images/cloud_message.png');
     }
 
+    checkNoDie() {
+        if (this.BgLogicScene) {
+            console.log('die!');
+        }
+        console.log('noDie');
+    }
+
     create() {
         this.background = this.add.sprite(-800, 0, 'forest_day');
         this.background.setOrigin(0, 0);
@@ -69,10 +76,10 @@ export default class Game extends Phaser.Scene {
         this.randomMessageInstance = new RandomMessage(this);
 
         new GameDayTime(this);
-        this.BgLogicScene.fulnessInstance.startCalcFulness();
-        if (JSON.parse(localStorage.getItem('gameLeftTime')) !== '0') {
-            this.BgLogicScene.fulnessInstance.calcFulnessAfterExit();
-        }
+        this.BgLogicScene.fulnessInstance.startCalcFulness(this.checkNoDie);
+        // if (JSON.parse(localStorage.getItem('gameLeftTime')) !== '0') {
+        //     this.BgLogicScene.fulnessInstance.calcFulnessAfterExit();
+        // }
 
         this.time.addEvent({
             delay: TIMER_CONFIG.randomMessage,
@@ -165,7 +172,6 @@ export default class Game extends Phaser.Scene {
             this.messageImg.setPosition(245, 300);
             this.messageImg.setScale(0.3, 0.5);
         }
-
         this.destroyMessage(TIMER_CONFIG.randomMessage * 0.5, this.messageText);
         this.destroyMessage(TIMER_CONFIG.randomMessage * 0.5, this.messageImg);
     }
